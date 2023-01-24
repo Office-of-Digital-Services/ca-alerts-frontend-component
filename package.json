@@ -1,0 +1,20 @@
+{
+  "name": "cdt",
+  "version": "1.0.0",
+  "description": "",
+  "type": "commonjs",
+  "scripts": {
+    "build": "node build/build.cjs",
+    "browse": "http-server ./_site -o"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  },
+  "dependencies": {
+    "html-minifier-terser": "^7.1.0",
+    "terser": "^5.16.1"
+  }
+}
