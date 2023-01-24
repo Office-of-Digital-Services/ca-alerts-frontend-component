@@ -1,14 +1,106 @@
-<div id="ca_alert_popup_dont_use_id">[ALERT_MESSAGE]</div>
+<div id="ca_alert">
+  <div class="alert_container">
+    <div>
+      <h1 class="heading">Winter Storm Alert</h1>
+      <p class="message">Get information on how to stay safe during winter storms.  <a href="https://ca.gov">More information.</a></p>
+    </div>
+    <button id="ca_alert_close_button">&times;</button>
+  </div>  
+</div>
 <style>
-  #ca_alert_popup_dont_use_id {
-    all: revert;
-    all: unset;
+  #ca_alert p, h1, h2, h3, h4, h5, h6 {
+    padding: 0;
+    margin: 0;
+    
+  }
+  #ca_alert button {
+    font-family: inherit;
+    font-size: 100%;
+    line-height: 1.5;
+    margin: 0;
+    background: none;
+    border: none;
+  }
+  #ca_alert {
+    z-index: 9999;
+    position: fixed;
+    top: 0;
+    background: #fff;
+    padding: 1rem;
+    left: 40%;
+    transform: translate(-10%, 10%);
+    border: 3px solid #F6C244;
+    box-shadow: 0px 4px 8px 0px #00000026;
+    color: #000;
+    font-family: Open-Sans, Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
+  #ca_alert .alert_container {
+    display: grid;
+    grid-template-columns: minmax(24ch,48ch) auto;
+    column-gap: .5rem;
+  }
+
+  #ca_alert .alert_icon {
+    color: #000;
+    background: #2669F6;
+    border-radius: 50%;
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+    text-align: center;
+  }
+  
+  #ca_alert .heading::before {
     display: inline-block;
+    content: '!';
+    height: 1.5rem;
+    width: 1.5rem;
+    color: #fff;
+    background: #f6c244;
+    border-radius: 50%;
+    line-height: 1.5rem;
+    text-align: center;
+    margin-right: 0.5rem;
+  }
 
-    font-size: large;
-    font-family: "Courier New", Courier, monospace;
+  #ca_alert .heading {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    font-size: 1.2rem;
+    margin-bottom: .25rem;
+    color:#333;
+  }
 
-    text-decoration: underline !important;
-    color: blueviolet;
+  #ca_alert .message {
+    text-align: left;
+    font-size: 1rem;
+    color: #333;
+    margin-left: 2rem;
+  }
+  #ca_alert a {
+    color:#046b99;
+    text-decoration: underline;
+  }
+
+  #ca_alert #ca_alert_close_button {
+    color: #888;
+    border-radius: 50%;
+    border: 1px solid #888;
+    background: #fff;
+    height: 1.5rem;
+    width: 1.5rem;
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    margin: 0;
+    text-align: center;
+    padding: 0;
+    position: absolute;
+    top: .25rem;
+    right: .25rem;
   }
 </style>
