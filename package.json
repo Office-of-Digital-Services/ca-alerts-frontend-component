@@ -4,7 +4,8 @@
   "description": "",
   "type": "commonjs",
   "scripts": {
-    "build": "node build/build.cjs",
+    "build NORMAL mode": "node build/build.cjs normal",
+    "build ACTIVE mode": "node build/build.cjs active",
     "browse": "http-server ./_site -o"
   },
   "keywords": [],

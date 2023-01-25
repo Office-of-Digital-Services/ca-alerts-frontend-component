@@ -1,6 +1,9 @@
 //@ts-check
 /* Node.JS Build Code */
 
+// NORMAL vs ACTIVE
+const buildModeNormal = "normal" === process.argv[2];
+
 const testMessageData = {
   message: "This is a test message"
 };
@@ -20,7 +23,8 @@ const htmlMinifyOptions = {
 */
 const minifyOptions = {};
 
-console.log('build running...');
+const inputJsFile = buildModeNormal ? "alert_templates/1_normalMode.js" : "alert_templates/2_activeMode.js";
+console.log(`build running in ${buildModeNormal ? "NORMAL" : "ACTIVE"}...`);
 const minifyJS = require("terser");
 const minifyHTML = require("html-minifier-terser");
 const fs = require("fs");
@@ -33,20 +37,23 @@ const staticFilesToCopy =
   ];
 
 (async () => {
-  const htmlTemplate = (fs.readFileSync("alert_templates/popup.html", { encoding: 'utf8' }));
-  const htmlTemplateNormal = htmlTemplate.replace("[ALERT_MESSAGE]", testMessageData.message);
+  let htmlTemplate = (fs.readFileSync("alert_templates/popup.html", { encoding: 'utf8' }));
+  if (buildModeNormal) {
+    // Replace the default ALERT_MESSAGE with the test message in normal
+    htmlTemplate = htmlTemplate.replace("[ALERT_MESSAGE]", testMessageData.message);
+  }
 
-  const htmlTemplateNormal_Minified = await minifyHTML.minify(htmlTemplateNormal, htmlMinifyOptions);
+  const htmlTemplate_Minified = await minifyHTML.minify(htmlTemplate, htmlMinifyOptions);
 
-  const normalModeCode = (await minifyJS.minify(
-    fs.readFileSync("alert_templates/1_normalMode.js",
+  const JsCode_Minified = (await minifyJS.minify(
+    fs.readFileSync(inputJsFile,
       { encoding: 'utf8' })
-      .replace("[HTML_CODE]", htmlTemplateNormal_Minified),
+      .replace("[HTML_CODE]", htmlTemplate_Minified),
     minifyOptions)).code || "";
 
   if (!fs.existsSync(targetDir)) fs.mkdirSync(targetDir);
 
-  fs.writeFileSync(`${targetDir}/alert.js`, normalModeCode, { encoding: 'utf8' });
+  fs.writeFileSync(`${targetDir}/alert.js`, JsCode_Minified, { encoding: 'utf8' });
 
   staticFilesToCopy.forEach(f => fs.copyFileSync(`test_page/${f}`, `${targetDir}/${f}`));
 

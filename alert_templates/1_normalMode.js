@@ -12,5 +12,11 @@ This is the "normal" mode code that checks for a test flag to display a test ale
     const content = document.createElement("span");
     content.innerHTML = htmlCode;
     document.body.appendChild(content);
+
+    content.onclick = function () {
+      //Add a dismiss function
+      console.log('Dismissing TEST Alert Message.')
+      content.style.display = "none";
+    };;
   }
 })();
