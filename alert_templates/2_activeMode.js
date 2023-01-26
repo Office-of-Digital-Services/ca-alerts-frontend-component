@@ -31,6 +31,6 @@ This is the "active" mode code when alerts are in place that checks for dismiss 
     }
   } catch (e) {
     // Local storage does not work here
-    console.error("Alerts will not work because local storage is not supported in this browser.")
+    console.error("Alerts will not work because local storage is not supported in this browser.");
   }
 })();
