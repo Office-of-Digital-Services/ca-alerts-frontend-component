@@ -2,16 +2,30 @@
   <div class="alert_container">
     <div>
       <h1 class="heading">Winter Storm Alert</h1>
-      <p class="message">Get information on how to stay safe during winter storms.  <a href="https://ca.gov">More information.</a></p>
+      <p class="message">
+        Get information on how to stay safe during winter storms.
+        <a href="https://ca.gov">More information.</a>
+      </p>
     </div>
     <button id="ca_alert_close_button">&times;</button>
-  </div>  
+  </div>
 </div>
 <style>
-  #ca_alert_popup_dont_use_id p, h1, h2, h3, h4, h5, h6 {
+  #ca_alert_popup_dont_use_id p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    /*  all: revert;
+    */
+    all: unset;
+    display: inline-block;
+    /* text-decoration: underline !important; */
+
     padding: 0;
     margin: 0;
-    
   }
   #ca_alert_popup_dont_use_id button {
     font-family: inherit;
@@ -29,7 +43,7 @@
     padding: 1rem;
     left: 40%;
     transform: translate(-10%, 10%);
-    border: 3px solid #F6C244;
+    border: 3px solid #f6c244;
     box-shadow: 0px 4px 8px 0px #00000026;
     color: #000;
     font-family: Open-Sans, Arial, Helvetica, sans-serif;
@@ -39,13 +53,13 @@
 
   #ca_alert_popup_dont_use_id .alert_container {
     display: grid;
-    grid-template-columns: minmax(24ch,48ch) auto;
-    column-gap: .5rem;
+    grid-template-columns: minmax(24ch, 48ch) auto;
+    column-gap: 0.5rem;
   }
 
   #ca_alert_popup_dont_use_id .alert_icon {
     color: #000;
-    background: #2669F6;
+    background: #2669f6;
     border-radius: 50%;
     width: 1.5rem;
     height: 1.5rem;
@@ -53,10 +67,10 @@
     line-height: 1.5rem;
     text-align: center;
   }
-  
+
   #ca_alert_popup_dont_use_id .heading::before {
     display: inline-block;
-    content: '!';
+    content: "!";
     height: 1.5rem;
     width: 1.5rem;
     color: #fff;
@@ -72,8 +86,8 @@
     margin: 0;
     padding: 0;
     font-size: 1.2rem;
-    margin-bottom: .25rem;
-    color:#333;
+    margin-bottom: 0.25rem;
+    color: #333;
   }
 
   #ca_alert_popup_dont_use_id .message {
@@ -83,7 +97,7 @@
     margin-left: 2rem;
   }
   #ca_alert_popup_dont_use_id a {
-    color:#046b99;
+    color: #046b99;
     text-decoration: underline;
   }
 
@@ -100,7 +114,7 @@
     text-align: center;
     padding: 0;
     position: absolute;
-    top: .25rem;
-    right: .25rem;
+    top: 0.25rem;
+    right: 0.25rem;
   }
 </style>
