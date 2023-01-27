@@ -5,8 +5,7 @@ This is the "active" mode code when alerts are in place that checks for dismiss 
 */
 
 (async () => {
-  const htmlCode = `[HTML_CODE]`;
-  const messageKey = `[MESSAGE_KEY]`;
+  const messageSourceUrl = `[ALERT_ACTIVE_HTML_URL]`; //This will be set to the HTML URL after the code is minified.
 
   const localStorageKey = "CaAlertsLocalStorageMessageDismissed";
 
@@ -15,22 +14,25 @@ This is the "active" mode code when alerts are in place that checks for dismiss 
     localStorage.setItem(test, test);
     localStorage.removeItem(test);
 
-    if (localStorage.getItem(localStorageKey) !== messageKey) {
-      //No dismiss stored, display alert
-      console.log('Displaying CA Alert Message');
+    if (localStorage.getItem(localStorageKey) !== messageSourceUrl) {
       const content = document.createElement("span");
-      content.innerHTML = htmlCode;
+      //Add the object to the DOM
       document.body.appendChild(content);
 
+      //fetch the html template to render
+      fetch(messageSourceUrl)
+        .then(response => response.text())
+        .then(html => content.innerHTML = html);
+
+      //Add a dismiss function
       content.onclick = function () {
-        //Add a dismiss function
         console.log('Dismissing Alert Message.')
-        localStorage.setItem(localStorageKey, messageKey);
+        localStorage.setItem(localStorageKey, messageSourceUrl);
         content.style.display = "none";
-      };;
+      };
     }
   } catch (e) {
     // Local storage does not work here
-    console.error("Alerts will not work because local storage is not supported in this browser.")
+    console.error("Alerts can't be displayed.");
   }
 })();

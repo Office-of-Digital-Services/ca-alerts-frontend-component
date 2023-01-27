@@ -1,12 +1,19 @@
 <html>
   <head>
     <title>Test page</title>
-    <script defer src="alert.js"></script>
+    <script defer src="alert_LOCALTEST.js"></script>
   </head>
   <body>
     <style>
       /* Maximum Goofy CSS Declarations please */
-      body {
+      body,
+      p,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
         text-decoration: line-through;
         color: red;
         font-size: xx-large;
@@ -14,10 +21,7 @@
       }
     </style>
     <p>This is the test page</p>
-    <form>
-      <input type="hidden" name="activate_alert_test_now" value="1" />
-      <input type="submit" value="Turn on test mode" />
-      <button onclick="localStorage.clear();">Clear Local Storage</button>
-    </form>
+
+    <button onclick="localStorage.clear();">Clear Local Storage</button>
   </body>
 </html>

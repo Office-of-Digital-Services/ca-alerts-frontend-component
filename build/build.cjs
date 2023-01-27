@@ -1,11 +1,18 @@
 //@ts-check
 /* Node.JS Build Code */
 
-// NORMAL vs ACTIVE
-const buildModeNormal = "normal" === process.argv[2];
+//Tokens to replace
+const tokenAlertHeading = '[ALERT_HEADING]';
+const tokenAlertBody = '[ALERT_BODY]';
+const tokenAlertTargetUrl = '[ALERT_TARGET_URL]';
+const tokenAlertLinkClassHidden = '[ALERT_LINK_CLASS_HIDDEN]';
+const tokenAlertHtmlDownload = '[ALERT_ACTIVE_HTML_URL]';
 
 const testMessageData = {
-  message: "This is a test message"
+  body: "This is a test message",
+  heading: "Heading",
+  targetUrl: "https://ca.gov",
+  linkClassHidden: "''"
 };
 
 /**
@@ -23,13 +30,18 @@ const htmlMinifyOptions = {
 */
 const minifyOptions = {};
 
-const inputJsFile = buildModeNormal ? "alert_templates/1_normalMode.js" : "alert_templates/2_activeMode.js";
-console.log(`build running in ${buildModeNormal ? "NORMAL" : "ACTIVE"}...`);
+console.log(`build running...`);
 const minifyJS = require("terser");
 const minifyHTML = require("html-minifier-terser");
 const fs = require("fs");
 
 const targetDir = "_site";
+const distDir = `${targetDir}/dist`;
+const sourceDir = "alert_templates";
+const testSiteSourceDir = "test_page";
+const inputJsFile = `${sourceDir}/1_client_check_code.js`;
+const inputHtmlFile = `${sourceDir}/popup.html`;
+const localTestHtml = `http://127.0.0.1:8080/dist/alert_test.html`
 const staticFilesToCopy =
   [
     "favicon.ico",
@@ -37,25 +49,28 @@ const staticFilesToCopy =
   ];
 
 (async () => {
-  let htmlTemplate = (fs.readFileSync("alert_templates/popup.html", { encoding: 'utf8' }));
-  if (buildModeNormal) {
-    // Replace the default ALERT_MESSAGE with the test message in normal
-    htmlTemplate = htmlTemplate.replace("[ALERT_MESSAGE]", testMessageData.message);
-  }
-
+  const htmlTemplate = fs.readFileSync(inputHtmlFile, { encoding: 'utf8' });
   const htmlTemplate_Minified = await minifyHTML.minify(htmlTemplate, htmlMinifyOptions);
 
-  const JsCode_Minified = (await minifyJS.minify(
-    fs.readFileSync(inputJsFile,
-      { encoding: 'utf8' })
-      .replace("[HTML_CODE]", htmlTemplate_Minified),
-    minifyOptions)).code || "";
+  const htmlTemplateTest_Minified =
+    // Replace the default ALERT_MESSAGE with the test message in normal
+    htmlTemplate_Minified
+      .replace(tokenAlertHeading, testMessageData.heading)
+      .replace(tokenAlertBody, testMessageData.body)
+      .replace(tokenAlertTargetUrl, testMessageData.targetUrl)
+      .replace(tokenAlertLinkClassHidden, testMessageData.linkClassHidden)
 
   if (!fs.existsSync(targetDir)) fs.mkdirSync(targetDir);
+  if (!fs.existsSync(distDir)) fs.mkdirSync(distDir);
+  fs.writeFileSync(`${distDir}/alert_template.html`, htmlTemplate_Minified, { encoding: 'utf8' });
+  fs.writeFileSync(`${distDir}/alert_test.html`, htmlTemplateTest_Minified, { encoding: 'utf8' });
 
-  fs.writeFileSync(`${targetDir}/alert.js`, JsCode_Minified, { encoding: 'utf8' });
+  const JsCode_Minified = (await minifyJS.minify(fs.readFileSync(inputJsFile, { encoding: 'utf8' }), minifyOptions)).code || "";
 
-  staticFilesToCopy.forEach(f => fs.copyFileSync(`test_page/${f}`, `${targetDir}/${f}`));
+  fs.writeFileSync(`${distDir}/alert_template.js`, JsCode_Minified, { encoding: 'utf8' });
+  fs.writeFileSync(`${targetDir}/alert_LOCALTEST.js`, JsCode_Minified.replace(tokenAlertHtmlDownload, localTestHtml), { encoding: 'utf8' });
+
+  staticFilesToCopy.forEach(f => fs.copyFileSync(`${testSiteSourceDir}/${f}`, `${targetDir}/${f}`));
 
   console.log('build finished...');
 })();
