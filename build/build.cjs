@@ -8,8 +8,6 @@ const tokenAlertTargetUrl = '[ALERT_TARGET_URL]';
 const tokenAlertLinkClassHidden = '[ALERT_LINK_CLASS_HIDDEN]';
 const tokenAlertHtmlDownload = '[ALERT_JAVASCRIPT_SOURCE_URL]';
 
-
-
 const testMessageData = {
   body: "This is a test message",
   heading: "Heading",
@@ -31,7 +29,6 @@ const htmlMinifyOptions = {
 * @type { import("terser").MinifyOptions }
 */
 const minifyOptions = {};
-
 
 console.log(`build running...`);
 const minifyJS = require("terser");
@@ -74,10 +71,6 @@ const staticFilesToCopy =
   fs.writeFileSync(`${targetDir}/alert_LOCALTEST.js`, JsCode_Minified.replace(tokenAlertHtmlDownload, localTestHtml), { encoding: 'utf8' });
 
   staticFilesToCopy.forEach(f => fs.copyFileSync(`${testSiteSourceDir}/${f}`, `${targetDir}/${f}`));
-
-
-
-
 
   console.log('build finished...');
 })();

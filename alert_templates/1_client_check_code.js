@@ -15,23 +15,25 @@ This is the "active" mode code when alerts are in place that checks for dismiss 
     localStorage.removeItem(test);
 
     if (localStorage.getItem(localStorageKey) !== messageSourceUrl) {
-      console.log('Displaying CA Alert Message');
       const content = document.createElement("span");
 
-      fetch(messageSourceUrl).then(response => response.text())
+      //fetch the html template to render
+      fetch(messageSourceUrl)
+        .then(response => response.text())
         .then(html => content.innerHTML = html);
 
+      //Add a dismiss function
       content.onclick = function () {
-        //Add a dismiss function
         console.log('Dismissing Alert Message.')
         localStorage.setItem(localStorageKey, messageSourceUrl);
         content.style.display = "none";
-      };;
+      };
 
+      //Add the object to the DOM
       document.body.appendChild(content);
     }
   } catch (e) {
     // Local storage does not work here
-    console.error("Alerts will not work because local storage is not supported in this browser.");
+    console.error("Alerts can't be displayed.");
   }
 })();
