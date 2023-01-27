@@ -5,8 +5,7 @@ This is the "active" mode code when alerts are in place that checks for dismiss 
 */
 
 (async () => {
-  const htmlCode = `[HTML_CODE]`;
-  const messageKey = `[MESSAGE_KEY]`;
+  const messageSourceUrl = `[ALERT_JAVASCRIPT_SOURCE_URL]`;
 
   const localStorageKey = "CaAlertsLocalStorageMessageDismissed";
 
@@ -15,19 +14,21 @@ This is the "active" mode code when alerts are in place that checks for dismiss 
     localStorage.setItem(test, test);
     localStorage.removeItem(test);
 
-    if (localStorage.getItem(localStorageKey) !== messageKey) {
-      //No dismiss stored, display alert
+    if (localStorage.getItem(localStorageKey) !== messageSourceUrl) {
       console.log('Displaying CA Alert Message');
       const content = document.createElement("span");
-      content.innerHTML = htmlCode;
-      document.body.appendChild(content);
+
+      fetch(messageSourceUrl).then(response => response.text())
+        .then(html => content.innerHTML = html);
 
       content.onclick = function () {
         //Add a dismiss function
         console.log('Dismissing Alert Message.')
-        localStorage.setItem(localStorageKey, messageKey);
+        localStorage.setItem(localStorageKey, messageSourceUrl);
         content.style.display = "none";
       };;
+
+      document.body.appendChild(content);
     }
   } catch (e) {
     // Local storage does not work here
