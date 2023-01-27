@@ -5,7 +5,7 @@ This is the "active" mode code when alerts are in place that checks for dismiss 
 */
 
 (async () => {
-  const messageSourceUrl = `[ALERT_JAVASCRIPT_SOURCE_URL]`;
+  const messageSourceUrl = `[ALERT_ACTIVE_HTML_URL]`; //This will be set to the HTML URL after the code is minified.
 
   const localStorageKey = "CaAlertsLocalStorageMessageDismissed";
 
@@ -16,6 +16,8 @@ This is the "active" mode code when alerts are in place that checks for dismiss 
 
     if (localStorage.getItem(localStorageKey) !== messageSourceUrl) {
       const content = document.createElement("span");
+      //Add the object to the DOM
+      document.body.appendChild(content);
 
       //fetch the html template to render
       fetch(messageSourceUrl)
@@ -28,9 +30,6 @@ This is the "active" mode code when alerts are in place that checks for dismiss 
         localStorage.setItem(localStorageKey, messageSourceUrl);
         content.style.display = "none";
       };
-
-      //Add the object to the DOM
-      document.body.appendChild(content);
     }
   } catch (e) {
     // Local storage does not work here
