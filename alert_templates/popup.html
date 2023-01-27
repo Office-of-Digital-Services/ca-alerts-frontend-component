@@ -1,16 +1,22 @@
 <div data-nosnippet id="ca_alert_popup_dont_use_id">
   <div class="alert_container">
     <div>
-      <h1 class="heading">Winter Storm Alert</h1>
+      <h1 class="heading">[ALERT_HEADING]</h1>
       <p class="message">
-        Get information on how to stay safe during winter storms.
-        <a href="https://ca.gov">More information.</a>
+        [ALERT_BODY]
+        <a href="[ALERT_TARGET_URL]" class="[ALERT_LINK_CLASS_HIDDEN]"
+          >More information.</a
+        >
       </p>
     </div>
     <button id="ca_alert_close_button">&times;</button>
   </div>
 </div>
 <style>
+  #ca_alert_popup_dont_use_id .hidden {
+    display: none;
+  }
+
   #ca_alert_popup_dont_use_id p,
   h1,
   h2,

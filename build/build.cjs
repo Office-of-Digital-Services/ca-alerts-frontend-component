@@ -1,11 +1,18 @@
 //@ts-check
 /* Node.JS Build Code */
 
+//Tokens to replace
+const tokenAlertHeading = '[ALERT_HEADING]';
+const tokenAlertBody = '[ALERT_BODY]';
+const tokenAlertTargetUrl = '[ALERT_TARGET_URL]';
+
 // NORMAL vs ACTIVE
 const buildModeNormal = "normal" === process.argv[2];
 
 const testMessageData = {
-  message: "This is a test message"
+  body: "This is a test message",
+  heading: "Heading",
+  targetUrl: "https://ca.gov"
 };
 
 /**
@@ -40,7 +47,10 @@ const staticFilesToCopy =
   let htmlTemplate = (fs.readFileSync("alert_templates/popup.html", { encoding: 'utf8' }));
   if (buildModeNormal) {
     // Replace the default ALERT_MESSAGE with the test message in normal
-    htmlTemplate = htmlTemplate.replace("[ALERT_MESSAGE]", testMessageData.message);
+    htmlTemplate = htmlTemplate
+      .replace(tokenAlertHeading, testMessageData.heading)
+      .replace(tokenAlertBody, testMessageData.body)
+      .replace(tokenAlertTargetUrl, testMessageData.targetUrl)
   }
 
   const htmlTemplate_Minified = await minifyHTML.minify(htmlTemplate, htmlMinifyOptions);
