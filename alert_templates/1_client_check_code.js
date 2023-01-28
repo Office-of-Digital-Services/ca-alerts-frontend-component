@@ -16,20 +16,21 @@ This is the "active" mode code when alerts are in place that checks for dismiss 
 
     if (localStorage.getItem(localStorageKey) !== messageSourceUrl) {
       const content = document.createElement("span");
-      //Add the object to the DOM
-      document.body.appendChild(content);
 
       //fetch the html template to render
       fetch(messageSourceUrl)
         .then(response => response.text())
         .then(html => content.innerHTML = html);
 
-      //Add a dismiss function
-      content.onclick = function () {
-        console.log('Dismissing Alert Message.')
-        localStorage.setItem(localStorageKey, messageSourceUrl);
-        content.style.display = "none";
-      };
+      content.addEventListener("click", function (e) {
+        if (/** @type {Element} */(e.target).tagName === "BUTTON") {
+          localStorage.setItem(localStorageKey, messageSourceUrl);
+          this.style.display = "none";
+        }
+      });
+
+      //Add the object to the DOM
+      document.body.appendChild(content);
     }
   } catch (e) {
     // Local storage does not work here
