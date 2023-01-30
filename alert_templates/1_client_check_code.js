@@ -23,7 +23,7 @@ This is the "active" mode code when alerts are in place that checks for dismiss 
     .then(html => (content.innerHTML = html));
 
    content.addEventListener("click", function (e) {
-    if (/** @type {Element} */ (e.target).tagName === "BUTTON") {
+    if (/** @type {Element} */ (e.target).id === "ca_alert_close_button") {
      localStorage.setItem(localStorageKey, messageSourceUrl);
      this.style.display = "none";
     }
