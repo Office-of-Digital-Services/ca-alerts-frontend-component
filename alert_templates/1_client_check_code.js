@@ -5,24 +5,26 @@ This is the "active" mode code when alerts are in place that checks for dismiss 
 */
 
 (async () => {
- const messageSourceUrl = "[ALERT_ACTIVE_HTML_URL]"; //This will be set to the HTML URL after the code is minified.
+ const messageSourceUrl = "[ALERT_ACTIVE_MESSAGE_HTML_URL]"; //This will be set to the HTML URL after the code is minified.
 
  const localStorageKey = "CaAlertsLocalStorageMessageDismissed";
 
- const test = "localStorageTest";
+ const localStorageTestValue = "localStorageTest";
  try {
-  localStorage.setItem(test, test);
-  localStorage.removeItem(test);
+  // Testing Local Storage compatibility
+  localStorage.setItem(localStorageTestValue, localStorageTestValue);
+  localStorage.removeItem(localStorageTestValue);
 
   if (localStorage.getItem(localStorageKey) !== messageSourceUrl) {
-   const content = document.createElement("span");
+   const containerSpan = document.createElement("span");
 
    //fetch the html template to render
    fetch(messageSourceUrl)
     .then(response => response.text())
-    .then(html => (content.innerHTML = html));
+    .then(html => (containerSpan.innerHTML = html));
 
-   content.addEventListener("click", function (e) {
+   // Add a click event that only applies to the dismiss button
+   containerSpan.addEventListener("click", function (e) {
     if (/** @type {Element} */ (e.target).id === "ca_alert_close_button") {
      localStorage.setItem(localStorageKey, messageSourceUrl);
      this.style.display = "none";
@@ -30,7 +32,7 @@ This is the "active" mode code when alerts are in place that checks for dismiss 
    });
 
    //Add the object to the DOM
-   document.body.appendChild(content);
+   document.body.appendChild(containerSpan);
   }
  } catch (e) {
   // Local storage does not work here
