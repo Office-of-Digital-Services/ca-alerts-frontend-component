@@ -6,11 +6,12 @@ const tokenAlertHeading = "[ALERT_HEADING]";
 const tokenAlertBody = "[ALERT_BODY]";
 const tokenAlertTargetUrl = "[ALERT_TARGET_URL]";
 const tokenAlertLinkClassHidden = "[ALERT_LINK_CLASS_HIDDEN]";
-const tokenAlertHtmlDownload = "[ALERT_ACTIVE_HTML_URL]";
+const tokenAlertHtmlDownload = "[ALERT_ACTIVE_MESSAGE_HTML_URL]";
 
 const testMessageData = {
- body: "This is a test message",
- heading: "Heading",
+ body:
+  "Governor Newsom has declared a state of emergency in all Sacramento counties.",
+ heading: "EMERGENCY ALERT",
  targetUrl: "https://ca.gov",
  linkClassHidden: "''"
 };
