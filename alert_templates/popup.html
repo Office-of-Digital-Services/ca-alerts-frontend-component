@@ -1,7 +1,17 @@
-<div data-nosnippet id="ca_alert_popup_dont_use_id">
+<div
+ data-nosnippet
+ id="ca_alert_popup_dont_use_id"
+ role="dialog"
+ aria-labelledby="ca_alert_popup_dont_use_id_heading"
+>
  <div class="alert_container">
+  <button id="ca_alert_close_button" aria-label="Dismiss this dialog">
+   &times;
+  </button>
   <div>
-   <h1 class="heading">[ALERT_HEADING]</h1>
+   <h1 class="heading" id="ca_alert_popup_dont_use_id_heading">
+    [ALERT_HEADING]
+   </h1>
    <p class="message">
     [ALERT_BODY]
     <a href="[ALERT_TARGET_URL]" class="[ALERT_LINK_CLASS_HIDDEN]"
@@ -9,7 +19,6 @@
     >
    </p>
   </div>
-  <button id="ca_alert_close_button">&times;</button>
  </div>
 </div>
 <style>

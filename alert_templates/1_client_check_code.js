@@ -4,7 +4,7 @@
 This is the "active" mode code when alerts are in place that checks for dismiss before rendering
 */
 
-(async () => {
+(() => {
  const messageSourceUrl = "[ALERT_ACTIVE_MESSAGE_HTML_URL]"; //This will be set to the HTML URL after the code is minified.
 
  const localStorageKey = "CaAlertsLocalStorageMessageDismissed";
