@@ -42,7 +42,7 @@ const sourceDir = "alert_templates";
 const testSiteSourceDir = "test_page";
 const inputJsFile = `${sourceDir}/1_client_check_code.js`;
 const inputHtmlFile = `${sourceDir}/popup.html`;
-const localTestHtml = "http://127.0.0.1:8080/dist/alert_test.html";
+const localTestHtml = "alert_test.html";
 const staticFilesToCopy = ["favicon.ico", "index.html"];
 
 (async () => {
@@ -62,10 +62,10 @@ const staticFilesToCopy = ["favicon.ico", "index.html"];
 
  if (!fs.existsSync(targetDir)) fs.mkdirSync(targetDir);
  if (!fs.existsSync(distDir)) fs.mkdirSync(distDir);
- fs.writeFileSync(`${distDir}/alert_template.html`, htmlTemplate_Minified, {
+ fs.writeFileSync(`${distDir}/alert.html`, htmlTemplate_Minified, {
   encoding: "utf8"
  });
- fs.writeFileSync(`${distDir}/alert_test.html`, htmlTemplateTest_Minified, {
+ fs.writeFileSync(`${targetDir}/alert_test.html`, htmlTemplateTest_Minified, {
   encoding: "utf8"
  });
 
@@ -77,11 +77,11 @@ const staticFilesToCopy = ["favicon.ico", "index.html"];
    )
   ).code || "";
 
- fs.writeFileSync(`${distDir}/alert_template.js`, JsCode_Minified, {
+ fs.writeFileSync(`${distDir}/alert.js`, JsCode_Minified, {
   encoding: "utf8"
  });
  fs.writeFileSync(
-  `${targetDir}/alert_LOCALTEST.js`,
+  `${targetDir}/alert_test.js`,
   JsCode_Minified.replace(tokenAlertHtmlDownload, localTestHtml),
   { encoding: "utf8" }
  );
