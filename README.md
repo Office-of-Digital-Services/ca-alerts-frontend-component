@@ -9,7 +9,7 @@ To see what this alert will look like on your website, paste this code into your
 1. Paste the code from below in the console line and press enter.
 
 ```Javascript
-document.body.appendChild(Object.assign(document.createElement("script"),{src:"https://calerts.azurewebsites.net"}));
+document.head.appendChild(document.createElement('script')).src='https://calerts.azurewebsites.net';
 ```
 
 To install the service on your website, add the following HTML code to your page.
@@ -17,7 +17,7 @@ To install the service on your website, add the following HTML code to your page
 ```HTML
 <head>
   ...
-  <script defer src="https://alerts.ca.gov/js/alerts.js"></script>
+  <script defer src="https://calerts.azurewebsites.net"></script>
   ...
 </head>
 ```
