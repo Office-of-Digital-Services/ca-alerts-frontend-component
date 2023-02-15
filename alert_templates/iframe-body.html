@@ -27,7 +27,9 @@
 </div>
 <script>
  function ca_gov_close_alert() {
-  document.getElementById("ca_alert_popup_dont_use_id").style.display = "none";
+  window.parent.document.getElementById("ca_gov_alert_frame").style.display =
+   "none";
+
   localStorage.setItem("[LocalStorageKey]", "[LocalStorageValue]");
  }
 </script>
