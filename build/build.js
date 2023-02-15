@@ -8,6 +8,8 @@ const tokenAlertTargetUrl = "[ALERT_TARGET_URL]";
 const tokenAlertLinkClassHidden = "[ALERT_LINK_CLASS_HIDDEN]";
 const tokenAlertHtmlDownload = "[ALERT_ACTIVE_MESSAGE_HTML_URL]";
 
+const tokenFrameBody = "[frame_body]";
+
 const testMessageData = {
  body:
   "Governor Newsom has declared a state of emergency in all Sacramento counties.",
@@ -23,7 +25,8 @@ const htmlMinifyOptions = {
  removeAttributeQuotes: true,
  removeTagWhitespace: true,
  collapseWhitespace: true,
- minifyCSS: true
+ minifyCSS: true,
+ minifyJS: true
 };
 
 /**
@@ -40,13 +43,30 @@ const targetDir = "_site";
 const distDir = `${targetDir}/dist`;
 const sourceDir = "alert_templates";
 const testSiteSourceDir = "test_page";
-const inputJsFile = `${sourceDir}/1_client_check_code.js`;
-const inputHtmlFile = `${sourceDir}/popup.html`;
+const inputFrame = `${sourceDir}/iframe-border.html`;
+const inputJsFile = `${sourceDir}/alert-code.js`;
+const inputHtmlFile = `${sourceDir}/iframe-body.html`;
 const localTestHtml = "alert_test.html";
 const staticFilesToCopy = ["favicon.ico", "index.html"];
 
 (async () => {
- const htmlTemplate = fs.readFileSync(inputHtmlFile, { encoding: "utf8" });
+ //The frame template has the iframe that goes on the outside
+ const htmlFrameTemplate = fs.readFileSync(inputFrame, { encoding: "utf8" });
+
+ //The body template goes inside the frame
+ const htmlBodyTemplate = fs.readFileSync(inputHtmlFile, { encoding: "utf8" });
+
+ const htmlBodyTemplate_Minified = await minifyHTML.minify(
+  htmlBodyTemplate,
+  htmlMinifyOptions
+ );
+
+ // Put the minified body template in the frame and minify them together
+ const htmlTemplate = htmlFrameTemplate.replace(
+  tokenFrameBody,
+  htmlBodyTemplate_Minified.replace(/"/g, "'") //the body template will need to switch to single quotes
+ );
+
  const htmlTemplate_Minified = await minifyHTML.minify(
   htmlTemplate,
   htmlMinifyOptions
