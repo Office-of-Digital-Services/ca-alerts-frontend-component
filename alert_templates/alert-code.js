@@ -20,11 +20,10 @@ This is the "active" mode code when alerts are in place that checks for dismiss 
    //fetch the html template to render
    fetch(messageSourceUrl)
     .then(response => response.text())
-    .then(html => (containerDiv.innerHTML = html))
+    .then(html => (containerDiv.innerHTML = html));
 
    //Add the object to the DOM
    document.body.appendChild(containerDiv);
-
   }
  } catch (e) {
   // Local storage does not work here
