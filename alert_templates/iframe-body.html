@@ -37,6 +37,21 @@
    "[ALERT_ACTIVE_MESSAGE_HTML_URL]"
   );
  }
+
+ window.addEventListener("DOMContentLoaded", () => {
+  let div = /** @type {HTMLDivElement} */ (
+   document.getElementById("ca_alert_popup_dont_use_id")
+  );
+  let iFrame = /** @type {HTMLIFrameElement} */ (
+   window.parent.document.getElementById("ca_gov_alert_frame")
+  );
+
+  let height = Math.max(div.clientHeight, div.scrollHeight, div.offsetHeight);
+  let width = Math.max(div.clientWidth, div.scrollWidth, div.offsetWidth);
+
+  iFrame.style.width = `${width}px`;
+  iFrame.style.height = `${height}px`;
+ });
 </script>
 <style>
  #ca_alert_popup_dont_use_id .hidden {
@@ -68,15 +83,13 @@
   border: none;
  }
  #ca_alert_popup_dont_use_id {
-  z-index: 9999;
   position: fixed;
   top: 0;
+  left: 0;
   background: #fff;
   padding: 1rem;
-  left: 40%;
-  transform: translate(-10%, 10%);
-  border: 3px solid #f6c244;
-  box-shadow: 0px 4px 8px 0px #00000026;
+  width: 30em;
+
   color: #000;
   font-family: Open-Sans, Arial, Helvetica, sans-serif;
   font-size: 1rem;
