@@ -15,17 +15,16 @@ This is the "active" mode code when alerts are in place that checks for dismiss 
   localStorage.removeItem(localStorageTestValue);
 
   if (localStorage.getItem(localStorageKey) !== messageSourceUrl) {
-   const containerDiv = document.createElement("div");
-
-   //fetch the html template to render
+   //fetch the html template to render and put it in the DOM
    fetch(messageSourceUrl)
     .then(response => response.text())
-    .then(html => (containerDiv.innerHTML = html));
-
-   //Add the object to the DOM
-   document.body.appendChild(containerDiv);
+    .then(
+     html =>
+      (document.body.appendChild(document.createElement("iframe")).outerHTML =
+       html)
+    );
   }
- } catch (e) {
+ } catch {
   // Local storage does not work here
   console.error("Alerts can't be displayed.");
  }
