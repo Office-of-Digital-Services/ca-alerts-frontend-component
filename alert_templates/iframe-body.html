@@ -89,11 +89,21 @@
  #ca_alert_popup_dont_use_id {
   background: #fff;
   padding: 1rem;
-  width: 30em;
+
   color: #000;
   font-family: Open-Sans, Arial, Helvetica, sans-serif;
   font-size: 1rem;
   line-height: 1.5rem;
+ }
+ @media (max-device-width: 450px) {
+  #ca_alert_popup_dont_use_id {
+   width: 20em;
+  }
+ }
+ @media (min-device-width: 450px) {
+  #ca_alert_popup_dont_use_id {
+   width: 30em;
+  }
  }
 
  #ca_alert_popup_dont_use_id .alert_container {
