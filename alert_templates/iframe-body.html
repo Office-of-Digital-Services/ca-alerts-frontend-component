@@ -30,7 +30,12 @@
   window.parent.document.getElementById("ca_gov_alert_frame").style.display =
    "none";
 
-  localStorage.setItem("[LocalStorageKey]", "[LocalStorageValue]");
+  //make sure CaAlertsLocalStorageMessageDismissed matches in alert-code.js
+
+  localStorage.setItem(
+   "CaAlertsLocalStorageMessageDismissed",
+   "[ALERT_ACTIVE_MESSAGE_HTML_URL]"
+  );
  }
 </script>
 <style>

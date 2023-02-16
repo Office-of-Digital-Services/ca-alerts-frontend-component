@@ -2,20 +2,33 @@
 /* Node.JS Build Code */
 
 //Tokens to replace
-const tokenAlertHeading = "[ALERT_HEADING]";
-const tokenAlertBody = "[ALERT_BODY]";
-const tokenAlertTargetUrl = "[ALERT_TARGET_URL]";
-const tokenAlertLinkClassHidden = "[ALERT_LINK_CLASS_HIDDEN]";
-const tokenAlertHtmlDownload = "[ALERT_ACTIVE_MESSAGE_HTML_URL]";
+
+const tokenReplacements = [
+ { key: "[ALERT_HEADING]", value: "EMERGENCY ALERT" },
+ {
+  key: "[ALERT_BODY]",
+  value:
+   "Governor Newsom has declared a state of emergency in all Sacramento counties."
+ },
+ { key: "[ALERT_TARGET_URL]", value: "https://ca.gov" },
+ { key: "[ALERT_LINK_CLASS_HIDDEN]", value: "''" },
+ { key: "[ALERT_ACTIVE_MESSAGE_HTML_URL]", value: "alert_test.html" }
+];
 
 const tokenFrameBody = "[frame_body]";
 
-const testMessageData = {
- body:
-  "Governor Newsom has declared a state of emergency in all Sacramento counties.",
- heading: "EMERGENCY ALERT",
- targetUrl: "https://ca.gov",
- linkClassHidden: "''"
+/**
+ * Replaces tokens in a string with the key/value pairs defined in tokenReplacements
+ * @param {string} s the string that contains tokens to be replaced
+ * @example const newstring = replaceTokens(oldstring);
+ *
+ */
+const replaceTokens = s => {
+ tokenReplacements.forEach(t => {
+  s = s.replace(t.key, t.value);
+ });
+
+ return s;
 };
 
 /**
@@ -46,7 +59,7 @@ const testSiteSourceDir = "test_page";
 const inputFrame = `${sourceDir}/iframe-border.html`;
 const inputJsFile = `${sourceDir}/alert-code.js`;
 const inputHtmlFile = `${sourceDir}/iframe-body.html`;
-const localTestHtml = "alert_test.html";
+//const localTestHtml = "alert_test.html";
 const staticFilesToCopy = ["favicon.ico", "index.html"];
 
 (async () => {
@@ -74,11 +87,11 @@ const staticFilesToCopy = ["favicon.ico", "index.html"];
 
  const htmlTemplateTest_Minified =
   // Replace the default ALERT_MESSAGE with the test message in normal
-  htmlTemplate_Minified
-   .replace(tokenAlertHeading, testMessageData.heading)
-   .replace(tokenAlertBody, testMessageData.body)
-   .replace(tokenAlertTargetUrl, testMessageData.targetUrl)
-   .replace(tokenAlertLinkClassHidden, testMessageData.linkClassHidden);
+  replaceTokens(htmlTemplate_Minified);
+ //   .replace(tokenAlertHeading, testMessageData.heading)
+ //   .replace(tokenAlertBody, testMessageData.body)
+ //   .replace(tokenAlertTargetUrl, testMessageData.targetUrl)
+ //   .replace(tokenAlertLinkClassHidden, testMessageData.linkClassHidden);
 
  if (!fs.existsSync(targetDir)) fs.mkdirSync(targetDir);
  if (!fs.existsSync(distDir)) fs.mkdirSync(distDir);
@@ -102,7 +115,7 @@ const staticFilesToCopy = ["favicon.ico", "index.html"];
  });
  fs.writeFileSync(
   `${targetDir}/alert_test.js`,
-  JsCode_Minified.replace(tokenAlertHtmlDownload, localTestHtml),
+  replaceTokens(JsCode_Minified), //.replace(tokenAlertHtmlDownload, localTestHtml),
   { encoding: "utf8" }
  );
 
