@@ -1,22 +1,11 @@
 <html>
  <head></head>
  <body>
-  <div
-   data-nosnippet
-   id="ca_alert"
-   role="dialog"
-   aria-labelledby="ca_alert_heading"
-  >
+  <div data-nosnippet id="ca_alert" role="dialog" aria-labelledby="heading">
    <div class="alert_container">
-    <button
-     id="ca_alert_close_button"
-     aria-label="Dismiss this dialog"
-     onclick="ca_gov_close_alert()"
-    >
-     &times;
-    </button>
+    <button id="close_button" aria-label="Dismiss this dialog">&times;</button>
     <div class="contents">
-     <h1 class="heading" id="ca_alert_heading">[ALERT_HEADING]</h1>
+     <h1 id="heading">[ALERT_HEADING]</h1>
      <p class="message">
       [ALERT_BODY]
       <a
@@ -30,32 +19,38 @@
    </div>
   </div>
   <script>
-   function ca_gov_close_alert() {
-    window.parent.document.getElementById("ca_alert_frame").style.display =
-     "none";
+   (() => {
+    const iFrame = window.parent.document.getElementById("ca_alert_frame");
 
-    //make sure CaAlertsLocalStorageMessageDismissed matches in alert-code.js
+    document.getElementById("close_button").addEventListener(
+     "click",
 
-    localStorage.setItem(
-     "CaAlertsLocalStorageMessageDismissed",
-     "[ALERT_ACTIVE_MESSAGE_HTML_URL]"
-    );
-   }
+     () => {
+      iFrame.style.display = "none";
 
-   window.addEventListener("DOMContentLoaded", () => {
-    let div = /** @type {HTMLDivElement} */ (
-     document.getElementById("ca_alert")
-    );
-    let iFrame = /** @type {HTMLIFrameElement} */ (
-     window.parent.document.getElementById("ca_alert_frame")
+      //make sure CaAlertsLocalStorageMessageDismissed matches in alert-code.js
+
+      localStorage.setItem(
+       "CaAlertsLocalStorageMessageDismissed",
+       "[ALERT_ACTIVE_MESSAGE_HTML_URL]"
+      );
+     }
     );
 
-    let height = Math.max(div.clientHeight, div.scrollHeight, div.offsetHeight);
-    let width = Math.max(div.clientWidth, div.scrollWidth, div.offsetWidth);
+    /**
+     * Set the outer iFrame height to match the inner content
+     */
+    const updateFrameHeight = () => {
+     iFrame.classList.remove("hidden");
+     iFrame.style.height = `${
+      document.getElementById("ca_alert").offsetHeight
+     }px`;
+    };
 
-    iFrame.style.width = `${width}px`;
-    iFrame.style.height = `${height}px`;
-   });
+    // Need to set the frame height when loaded AND during resize
+    window.addEventListener("DOMContentLoaded", updateFrameHeight);
+    window.addEventListener("resize", updateFrameHeight);
+   })();
   </script>
   <style>
    body {
@@ -101,7 +96,7 @@
     line-height: 1.5rem;
     text-align: center;
    }
-   .heading::before {
+   #heading::before {
     display: inline-block;
     content: "!";
     height: 1.5rem;
@@ -117,7 +112,7 @@
    .contents {
     margin-left: 1.25rem;
    }
-   .heading {
+   #heading {
     position: relative;
     margin: 0;
     padding: 0;
@@ -136,7 +131,7 @@
     color: #046b99;
     text-decoration: underline;
    }
-   #ca_alert_close_button {
+   #close_button {
     color: #888;
     border-radius: 50%;
     border: 1px solid #888;
@@ -152,7 +147,7 @@
     top: 0.25rem;
     right: 0.25rem;
    }
-   #ca_alert_close_button:hover {
+   #close_button:hover {
     background: #e8e8e8;
     cursor: pointer;
    }
