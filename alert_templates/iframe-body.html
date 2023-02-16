@@ -1,8 +1,11 @@
-<div
+<html>
+ <head></head>
+ <body>
+  <div
  data-nosnippet
- id="ca_alert_popup_dont_use_id"
+ id="ca_alert"
  role="dialog"
- aria-labelledby="ca_alert_popup_dont_use_id_heading"
+ aria-labelledby="ca_alert_heading"
 >
  <div class="alert_container">
   <button
@@ -12,8 +15,8 @@
   >
    &times;
   </button>
-  <div>
-   <h1 class="heading" id="ca_alert_popup_dont_use_id_heading">
+  <div class="contents">
+   <h1 class="heading" id="ca_alert_heading">
     [ALERT_HEADING]
    </h1>
    <p class="message">
@@ -39,114 +42,105 @@
  }
 </script>
 <style>
- #ca_alert_popup_dont_use_id .hidden {
-  display: none;
+  body {
+   margin: 0;
  }
+ .hidden {
+   display: none;
+ }
+ button {
+   font-family: inherit;
+   font-size: 100%;
+   line-height: 1.5rem;
+   margin: 0;
+   background: none;
+   border: none;
+   min-width: 1rem;
+   max-width: 1.5rem;
+   width: 1rem;
+   min-height: 1rem;
+   max-height: 1.5rem;
+   height: 1rem;
+ }
+ #ca_alert {
+   background: #fff;
+   padding: 1rem;
+   color: #000;
+   font-family: Open-Sans, Arial, Helvetica, sans-serif;
+   font-size: 1rem;
+   line-height: 1.5rem;
+ }
+ .alert_container {
+   display: grid;
+   grid-template-columns: minmax(24ch, 48ch);
+   column-gap: 0.5rem;
+ }
+ .alert_icon {
+   color: #000;
+   background: #2669f6;
+   border-radius: 50%;
+   width: 1.5rem;
+   height: 1.5rem;
+   font-size: 1.2rem;
+   line-height: 1.5rem;
+   text-align: center;
+ }
+ .heading::before {
+   display: inline-block;
+   content: '!';
+   height: 1.5rem;
+   width: 1.5rem;
+   color: #000;
+   background: #f6c244;
+   border-radius: 50%;
+   line-height: 1.5rem;
+   text-align: center;
+   position: absolute;
+   left: -1.8rem;
+ }
+ .contents {
+   margin-left: 1.25rem;
+ }
+ .heading {
+   position: relative;
+   margin: 0;
+   padding: 0;
+   font-size: 1.2rem;
+   margin-bottom: 0.5rem;
+   color: #333;
+   font-weight: 600;
+ }
+ .message {
+   text-align: left;
+   font-size: 1rem;
+   color: #333;
+   margin: .5rem 0;
+ }
+ a {
+   color: #046b99;
+   text-decoration: underline;
+ }
+ #ca_alert_close_button {
+   color: #888;
+   border-radius: 50%;
+   border: 1px solid #888;
+   background: #fff;
+   height: 1.5rem;
+   width: 1.5rem;
+   font-size: 1.5rem;
+   line-height: 1.5rem;
+   margin: 0;
+   text-align: center;
+   padding: 0;
+   position: absolute;
+   top: 0.25rem;
+   right: 0.25rem;
+ }
+ #ca_alert_close_button:hover {
+   background: #e8e8e8;
+   cursor: pointer;
+ }
+ </style>
 
- #ca_alert_popup_dont_use_id p,
- h1,
- h2,
- h3,
- h4,
- h5,
- h6 {
-  /*  all: revert;
-    */
-  all: unset;
-  display: inline-block;
-  /* text-decoration: underline !important; */
-
-  padding: 0;
-  margin: 0;
- }
- #ca_alert_popup_dont_use_id button {
-  font-family: inherit;
-  font-size: 100%;
-  line-height: 1.5;
-  margin: 0;
-  background: none;
-  border: none;
- }
- #ca_alert_popup_dont_use_id {
-  z-index: 9999;
-  position: fixed;
-  top: 0;
-  background: #fff;
-  padding: 1rem;
-  left: 40%;
-  transform: translate(-10%, 10%);
-  border: 3px solid #f6c244;
-  box-shadow: 0px 4px 8px 0px #00000026;
-  color: #000;
-  font-family: Open-Sans, Arial, Helvetica, sans-serif;
-  font-size: 1rem;
-  line-height: 1.5rem;
- }
-
- #ca_alert_popup_dont_use_id .alert_container {
-  display: grid;
-  grid-template-columns: minmax(24ch, 48ch) auto;
-  column-gap: 0.5rem;
- }
-
- #ca_alert_popup_dont_use_id .alert_icon {
-  color: #000;
-  background: #2669f6;
-  border-radius: 50%;
-  width: 1.5rem;
-  height: 1.5rem;
-  font-size: 1.2rem;
-  line-height: 1.5rem;
-  text-align: center;
- }
-
- #ca_alert_popup_dont_use_id .heading::before {
-  display: inline-block;
-  content: "!";
-  height: 1.5rem;
-  width: 1.5rem;
-  color: #fff;
-  background: #f6c244;
-  border-radius: 50%;
-  line-height: 1.5rem;
-  text-align: center;
-  margin-right: 0.5rem;
- }
-
- #ca_alert_popup_dont_use_id .heading {
-  position: relative;
-  margin: 0;
-  padding: 0;
-  font-size: 1.2rem;
-  margin-bottom: 0.25rem;
-  color: #333;
- }
-
- #ca_alert_popup_dont_use_id .message {
-  text-align: left;
-  font-size: 1rem;
-  color: #333;
-  margin-left: 2rem;
- }
- #ca_alert_popup_dont_use_id a {
-  color: #046b99;
-  text-decoration: underline;
- }
-
- #ca_alert_popup_dont_use_id #ca_alert_close_button {
-  color: #888;
-  border-radius: 50%;
-  border: 1px solid #888;
-  background: #fff;
-  height: 1.5rem;
-  width: 1.5rem;
-  font-size: 1.5rem;
-  line-height: 1.5rem;
-  margin: 0;
-  text-align: center;
-  padding: 0;
-  position: absolute;
-  top: 0.25rem;
-  right: 0.25rem;
- }
-</style>
+ </body>
+</html>
