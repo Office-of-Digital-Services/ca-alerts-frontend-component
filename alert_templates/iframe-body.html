@@ -21,7 +21,10 @@
    </h1>
    <p class="message">
     [ALERT_BODY]
-    <a href="[ALERT_TARGET_URL]" class="[ALERT_LINK_CLASS_HIDDEN]"
+    <a
+     href="[ALERT_TARGET_URL]"
+     class="[ALERT_LINK_CLASS_HIDDEN]"
+     target="_parent"
      >Get more info.</a
     >
    </p>
@@ -40,6 +43,21 @@
    "[ALERT_ACTIVE_MESSAGE_HTML_URL]"
   );
  }
+
+ window.addEventListener("DOMContentLoaded", () => {
+  let div = /** @type {HTMLDivElement} */ (
+   document.getElementById("ca_alert_popup_dont_use_id")
+  );
+  let iFrame = /** @type {HTMLIFrameElement} */ (
+   window.parent.document.getElementById("ca_gov_alert_frame")
+  );
+
+  let height = Math.max(div.clientHeight, div.scrollHeight, div.offsetHeight);
+  let width = Math.max(div.clientWidth, div.scrollWidth, div.offsetWidth);
+
+  iFrame.style.width = `${width}px`;
+  iFrame.style.height = `${height}px`;
+ });
 </script>
 <style>
   body {
@@ -47,6 +65,7 @@
  }
  .hidden {
    display: none;
+
  }
  button {
    font-family: inherit;

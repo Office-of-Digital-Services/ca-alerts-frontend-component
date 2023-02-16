@@ -59,7 +59,6 @@ const testSiteSourceDir = "test_page";
 const inputFrame = `${sourceDir}/iframe-border.html`;
 const inputJsFile = `${sourceDir}/alert-code.js`;
 const inputHtmlFile = `${sourceDir}/iframe-body.html`;
-//const localTestHtml = "alert_test.html";
 const staticFilesToCopy = ["favicon.ico", "index.html"];
 
 (async () => {
@@ -85,13 +84,8 @@ const staticFilesToCopy = ["favicon.ico", "index.html"];
   htmlMinifyOptions
  );
 
- const htmlTemplateTest_Minified =
-  // Replace the default ALERT_MESSAGE with the test message in normal
-  replaceTokens(htmlTemplate_Minified);
- //   .replace(tokenAlertHeading, testMessageData.heading)
- //   .replace(tokenAlertBody, testMessageData.body)
- //   .replace(tokenAlertTargetUrl, testMessageData.targetUrl)
- //   .replace(tokenAlertLinkClassHidden, testMessageData.linkClassHidden);
+ // Replace the default ALERT_MESSAGE with the test message in normal
+ const htmlTemplateTest_Minified = replaceTokens(htmlTemplate_Minified);
 
  if (!fs.existsSync(targetDir)) fs.mkdirSync(targetDir);
  if (!fs.existsSync(distDir)) fs.mkdirSync(distDir);
@@ -115,7 +109,7 @@ const staticFilesToCopy = ["favicon.ico", "index.html"];
  });
  fs.writeFileSync(
   `${targetDir}/alert_test.js`,
-  replaceTokens(JsCode_Minified), //.replace(tokenAlertHtmlDownload, localTestHtml),
+  replaceTokens(JsCode_Minified),
   { encoding: "utf8" }
  );
 

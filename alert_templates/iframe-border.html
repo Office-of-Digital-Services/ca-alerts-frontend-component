@@ -2,12 +2,18 @@
  id="ca_alert_frame"
  srcdoc="[frame_body]"
  title="CA Alert Dialog"
+ scrolling="no"
 ></iframe>
 <style>
+
  iframe#ca_alert_frame {
   position: fixed;
-  top: 1%;
+  top: 10px;
   left: 50%;
+  transform: translateX(-50%);
+  z-index: 2147483647;
+  width: 0px; /* Will be expanded in code */
+  height: 0px; /* Will be expanded in code */
   border: 3px solid #f6c244;
   box-shadow: 0 4px 8px 0 #00000026;
  }
