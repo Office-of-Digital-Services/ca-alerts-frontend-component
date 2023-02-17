@@ -1,156 +1,150 @@
-<html>
- <head></head>
- <body>
-  <div data-nosnippet id="ca_alert" role="dialog" aria-labelledby="heading">
-   <div class="alert_container">
-    <button id="close_button" aria-label="Dismiss this dialog">&times;</button>
-    <div class="contents">
-     <h1 id="heading">[ALERT_HEADING]</h1>
-     <p class="message">
-      [ALERT_BODY]
-      <a
-       href="[ALERT_TARGET_URL]"
-       class="[ALERT_LINK_CLASS_HIDDEN]"
-       target="_parent"
-       >Get more info.</a
-      >
-     </p>
-    </div>
-   </div>
+<div data-nosnippet id="ca_alert" role="dialog" aria-labelledby="heading">
+ <div class="alert_container">
+  <button id="close_button" aria-label="Dismiss this dialog">&times;</button>
+  <div class="contents">
+   <h1 id="heading">[ALERT_HEADING]</h1>
+   <p class="message">
+    [ALERT_BODY]
+    <a
+     href="[ALERT_TARGET_URL]"
+     class="[ALERT_LINK_CLASS_HIDDEN]"
+     target="_parent"
+     >Get more info.</a
+    >
+   </p>
   </div>
-  <script>
-   (() => {
-    const iFrame = window.parent.document.getElementById("ca_alert_frame");
+ </div>
+</div>
+<script>
+ (() => {
+  const iFrame = window.parent.document.getElementById("ca_alert_frame");
 
-    document.getElementById("close_button").addEventListener(
-     "click",
+  document.getElementById("close_button").addEventListener(
+   "click",
 
-     () => {
-      iFrame.style.display = "none";
+   () => {
+    iFrame.style.display = "none"; //Will not be overridden by a resize to remove the hidden class
 
-      //make sure CaAlertsLocalStorageMessageDismissed matches in alert-code.js
+    //make sure CaAlertsLocalStorageMessageDismissed matches in alert-code.js
 
-      localStorage.setItem(
-       "CaAlertsLocalStorageMessageDismissed",
-       "[ALERT_ACTIVE_MESSAGE_HTML_URL]"
-      );
-     }
+    localStorage.setItem(
+     "CaAlertsLocalStorageMessageDismissed",
+     "[ALERT_ACTIVE_MESSAGE_HTML_URL]"
     );
+   }
+  );
 
-    /**
-     * Set the outer iFrame height to match the inner content
-     */
-    const updateFrameHeight = () => {
-     iFrame.classList.remove("hidden");
-     iFrame.style.height = `${
-      document.getElementById("ca_alert").offsetHeight
-     }px`;
-    };
+  /**
+   * Set the outer iFrame height to match the inner content
+   */
+  const updateFrameHeight = () => {
+   iFrame.style.height =
+    document.getElementById("ca_alert").offsetHeight + "px";
+   iFrame.className = ""; //Whatever classes we set to hide will be cleared
+  };
 
-    // Need to set the frame height when loaded AND during resize
-    window.addEventListener("DOMContentLoaded", updateFrameHeight);
-    window.addEventListener("resize", updateFrameHeight);
-   })();
-  </script>
-  <style>
-   body {
-    margin: 0;
-   }
-   .hidden {
-    display: none;
-   }
-   button {
-    font-family: inherit;
-    font-size: 100%;
-    line-height: 1.5rem;
-    margin: 0;
-    background: none;
-    border: none;
-    min-width: 1rem;
-    max-width: 1.5rem;
-    width: 1rem;
-    min-height: 1rem;
-    max-height: 1.5rem;
-    height: 1rem;
-   }
-   #ca_alert {
-    background: #fff;
-    padding: 1rem;
-    color: #000;
-    font-family: Open-Sans, Arial, Helvetica, sans-serif;
-    font-size: 1rem;
-    line-height: 1.5rem;
-   }
-   .alert_container {
-    display: grid;
-    grid-template-columns: minmax(24ch, 48ch);
-    column-gap: 0.5rem;
-   }
-   .alert_icon {
-    color: #000;
-    background: #2669f6;
-    border-radius: 50%;
-    width: 1.5rem;
-    height: 1.5rem;
-    font-size: 1.2rem;
-    line-height: 1.5rem;
-    text-align: center;
-   }
-   #heading::before {
-    display: inline-block;
-    content: "!";
-    height: 1.5rem;
-    width: 1.5rem;
-    color: #000;
-    background: #f6c244;
-    border-radius: 50%;
-    line-height: 1.5rem;
-    text-align: center;
-    position: absolute;
-    left: -1.8rem;
-   }
-   .contents {
-    margin-left: 1.25rem;
-   }
-   #heading {
-    position: relative;
-    margin: 0;
-    padding: 0;
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-    color: #333;
-    font-weight: 600;
-   }
-   .message {
-    text-align: left;
-    font-size: 1rem;
-    color: #333;
-    margin: 0.5rem 0;
-   }
-   a {
-    color: #046b99;
-    text-decoration: underline;
-   }
-   #close_button {
-    color: #888;
-    border-radius: 50%;
-    border: 1px solid #888;
-    background: #fff;
-    height: 1.5rem;
-    width: 1.5rem;
-    font-size: 1.5rem;
-    line-height: 1.5rem;
-    margin: 0;
-    text-align: center;
-    padding: 0;
-    position: absolute;
-    top: 0.25rem;
-    right: 0.25rem;
-   }
-   #close_button:hover {
-    background: #e8e8e8;
-    cursor: pointer;
-   }
-  </style>
- </body>
-</html>
+  // Need to set the frame height when loaded AND during resize
+  window.addEventListener("DOMContentLoaded", updateFrameHeight);
+  window.addEventListener("resize", updateFrameHeight);
+ })();
+</script>
+<style>
+ body {
+  margin: 0;
+ }
+ .hidden {
+  display: none; /* This is used to hide the link only, not for hiding the frame */
+ }
+ button {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.5rem;
+  margin: 0;
+  background: none;
+  border: none;
+  min-width: 1rem;
+  max-width: 1.5rem;
+  width: 1rem;
+  min-height: 1rem;
+  max-height: 1.5rem;
+  height: 1rem;
+ }
+ #ca_alert {
+  background: #fff;
+  padding: 1rem;
+  color: #000;
+  font-family: Open-Sans, Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5rem;
+ }
+ .alert_container {
+  display: grid;
+  grid-template-columns: minmax(24ch, 48ch);
+  column-gap: 0.5rem;
+ }
+ .alert_icon {
+  color: #000;
+  background: #2669f6;
+  border-radius: 50%;
+  width: 1.5rem;
+  height: 1.5rem;
+  font-size: 1.2rem;
+  line-height: 1.5rem;
+  text-align: center;
+ }
+ #heading::before {
+  display: inline-block;
+  content: "!";
+  height: 1.5rem;
+  width: 1.5rem;
+  color: #000;
+  background: #f6c244;
+  border-radius: 50%;
+  line-height: 1.5rem;
+  text-align: center;
+  position: absolute;
+  left: -1.8rem;
+ }
+ .contents {
+  margin-left: 1.25rem;
+ }
+ #heading {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+  font-weight: 600;
+ }
+ .message {
+  text-align: left;
+  font-size: 1rem;
+  color: #333;
+  margin: 0.5rem 0;
+ }
+ a {
+  color: #046b99;
+  text-decoration: underline;
+ }
+ #close_button {
+  color: #888;
+  border-radius: 50%;
+  border: 1px solid #888;
+  background: #fff;
+  height: 1.5rem;
+  width: 1.5rem;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  margin: 0;
+  text-align: center;
+  padding: 0;
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+ }
+ #close_button:hover {
+  background: #e8e8e8;
+  cursor: pointer;
+ }
+</style>
