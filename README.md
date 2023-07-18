@@ -17,7 +17,7 @@ To install the service on your website, add the following HTML code to your page
 ```HTML
 <head>
   ...
-  <script defer src="https://calerts.azurewebsites.net"></script>
+  <script defer src="https://alert.cdt.ca.gov" crossorigin="anonymous"></script>
   ...
 </head>
 ```
