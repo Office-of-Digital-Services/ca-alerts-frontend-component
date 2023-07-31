@@ -9,15 +9,24 @@ To see what this alert will look like on your website, paste this code into your
 1. Paste the code from below in the console line and press enter.
 
 ```Javascript
-document.head.appendChild(document.createElement('script')).src='https://calerts.azurewebsites.net';
+document.head.appendChild(document.createElement('script')).src='https://alert.cdt.ca.gov/sample/sample-alert.js';
 ```
 
-To install the service on your website, add the following HTML code to your page.
+Once you have dismissed the message in your browser, it won't display again (by design).  You can clear your dismissal in the console with...
 
+```Javascript
+localStorage.clear();
+```
+
+Finally, to install the production service on your website, add the following HTML code to your `<HTML><HEAD>` section.
 ```HTML
+<html>
+...
 <head>
   ...
   <script defer src="https://alert.cdt.ca.gov" crossorigin="anonymous"></script>
   ...
 </head>
+...
 ```
+
