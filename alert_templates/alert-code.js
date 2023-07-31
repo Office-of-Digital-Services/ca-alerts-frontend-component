@@ -20,8 +20,10 @@ This is the "active" mode code when alerts are in place that checks for dismiss 
     .then(response => response.text())
     .then(
      html =>
-      (document.body.appendChild(document.createElement("iframe")).outerHTML =
-       html)
+      (document.body.insertBefore(
+       document.createElement("iframe"),
+       document.body.childNodes[0]
+      ).outerHTML = html)
     );
   }
  } catch {
