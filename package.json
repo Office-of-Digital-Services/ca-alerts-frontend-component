@@ -1,22 +1,22 @@
 {
- "name": "ca-alerts-frontend-component",
- "version": "1.0.0",
- "description": "",
- "type": "commonjs",
- "scripts": {
-  "build": "node build/build.js",
-  "browse": "http-server ./_site -o"
- },
- "keywords": [],
- "author": "",
- "license": "ISC",
- "devDependencies": {
-  "eslint": "8.33.0",
-  "http-server": "^14.1.1",
-  "prettier": "2.8.3"
- },
- "dependencies": {
-  "html-minifier-terser": "^7.1.0",
-  "terser": "^5.16.1"
- }
+  "name": "ca-alerts-frontend-component",
+  "version": "1.0.0",
+  "description": "",
+  "type": "commonjs",
+  "scripts": {
+    "build": "node build/build.js",
+    "browse": "http-server ./_site -o"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "8.33.0",
+    "http-server": "^14.1.1",
+    "prettier": "2.8.3"
+  },
+  "dependencies": {
+    "html-minifier-terser": "^7.1.0",
+    "terser": "^5.16.1"
+  }
 }
