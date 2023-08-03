@@ -1,21 +1,19 @@
 <div data-nosnippet id="ca_alert" role="alertdialog" aria-labelledby="heading">
-  <div>
-    <div class="contents">
-      <h1 id="heading">[ALERT_HEADING]</h1>
-      <p class="message">
-        [ALERT_BODY]
-        <a
-          href="[ALERT_TARGET_URL]"
-          class="[ALERT_LINK_CLASS_HIDDEN]"
-          target="_parent"
-          >Get more info.</a
-        >
-      </p>
-    </div>
-    <button id="close_button" aria-label="Dismiss this alert">
-      <span aria-hidden="true">&times;</span>
-    </button>
+  <div class="contents">
+    <h1 id="heading">[ALERT_HEADING]</h1>
+    <p>
+      [ALERT_BODY]
+      <a
+        href="[ALERT_TARGET_URL]"
+        class="[ALERT_LINK_CLASS_HIDDEN]"
+        target="_parent"
+        >Get more info.</a
+      >
+    </p>
   </div>
+  <button id="close_button" aria-label="Dismiss this alert">
+    <span aria-hidden="true">&times;</span>
+  </button>
 </div>
 <script>
   (() => {
@@ -77,14 +75,15 @@
    margin-left: 1.25rem;
    color: #333;
   }
+  .contents > p {
+   margin: 0.5rem 0;
+  }
   #heading {
    position: relative;
    margin: 0;
    font-size: 1.2rem;
   }
-  .message {
-   margin: 0.5rem 0;
-  }
+
   a {
    color: #046b99;
    text-decoration: underline;
