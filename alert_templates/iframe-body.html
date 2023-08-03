@@ -1,5 +1,5 @@
 <div data-nosnippet id="ca_alert" role="alertdialog" aria-labelledby="heading">
-  <div class="contents">
+  <div>
     <h1 id="heading">[ALERT_HEADING]</h1>
     <p>
       [ALERT_BODY]
@@ -62,7 +62,19 @@
    font-family: Open-Sans, Arial, Helvetica, sans-serif;
    line-height: 1.5rem;
   }
-  #heading::before {
+  #ca_alert > div {
+   margin-left: 1.25rem;
+   color: #333;
+  }
+  p {
+   margin: 0.5rem 0;
+  }
+  h1 {
+   position: relative;
+   margin: 0;
+   font-size: 1.2rem;
+  }
+  h1::before {
    content: "!";
    width: 1.5rem;
    background: #e07000;
@@ -71,27 +83,12 @@
    position: absolute;
    left: -1.8rem;
   }
-  .contents {
-   margin-left: 1.25rem;
-   color: #333;
-  }
-  .contents > p {
-   margin: 0.5rem 0;
-  }
-  #heading {
-   position: relative;
-   margin: 0;
-   font-size: 1.2rem;
-  }
-
   a {
    color: #046b99;
    text-decoration: underline;
   }
   #close_button {
    font-family: inherit; /* needed for Safari */
-   min-height: 1rem;
-   max-height: 1.5rem;
    color: #757575;
    border-radius: 50%;
    border: 1px solid #757575;
@@ -100,8 +97,6 @@
    width: 1.5rem;
    font-size: 1.5rem;
    line-height: 1.5rem;
-   margin: 0;
-   text-align: center;
    padding: 0;
    position: absolute;
    top: 0.25rem;
