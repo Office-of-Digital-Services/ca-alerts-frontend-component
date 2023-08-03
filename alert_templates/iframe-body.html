@@ -1,16 +1,14 @@
 <div data-nosnippet id="ca_alert" role="alertdialog" aria-labelledby="heading">
-  <div>
-    <h1 id="heading">[ALERT_HEADING]</h1>
-    <p>
-      [ALERT_BODY]
-      <a
-        href="[ALERT_TARGET_URL]"
-        class="[ALERT_LINK_CLASS_HIDDEN]"
-        target="_parent"
-        >Get more info.</a
-      >
-    </p>
-  </div>
+  <h1 id="heading">[ALERT_HEADING]</h1>
+  <p>
+    [ALERT_BODY]
+    <a
+      href="[ALERT_TARGET_URL]"
+      class="[ALERT_LINK_CLASS_HIDDEN]"
+      target="_parent"
+      >Get more info.</a
+    >
+  </p>
   <button id="close_button" aria-label="Dismiss this alert">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -58,12 +56,8 @@
   #ca_alert {
    background: #fff;
    padding: 1rem;
-   color: #000;
    font-family: Open-Sans, Arial, Helvetica, sans-serif;
    line-height: 1.5rem;
-  }
-  #ca_alert > div {
-   margin-left: 1.25rem;
    color: #333;
   }
   p {
@@ -73,6 +67,9 @@
    position: relative;
    margin: 0;
    font-size: 1.2rem;
+  }
+  p, h1 {
+   margin-left: 1.25rem;
   }
   h1::before {
    content: "!";
@@ -87,7 +84,7 @@
    color: #046b99;
    text-decoration: underline;
   }
-  #close_button {
+  button {
    font-family: inherit; /* needed for Safari */
    color: #757575;
    border-radius: 50%;
@@ -102,7 +99,7 @@
    top: 0.25rem;
    right: 0.25rem;
   }
-  #close_button:hover {
+  button:hover {
    background: #e8e8e8;
    cursor: pointer;
   }
