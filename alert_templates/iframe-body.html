@@ -1,6 +1,5 @@
-<div data-nosnippet id="ca_alert" role="dialog" aria-labelledby="heading">
+<div data-nosnippet id="ca_alert" role="alertdialog" aria-labelledby="heading">
   <div class="alert_container">
-    <button id="close_button" aria-label="Dismiss this dialog">&times;</button>
     <div class="contents">
       <h1 id="heading">[ALERT_HEADING]</h1>
       <p class="message">
@@ -13,6 +12,7 @@
         >
       </p>
     </div>
+    <button id="close_button" aria-label="Dismiss this alert">&times;</button>
   </div>
 </div>
 <script>
@@ -55,20 +55,7 @@
   .hidden {
    display: none; /* This is used to hide the link only, not for hiding the frame */
   }
-  button {
-   font-family: inherit;
-   font-size: 100%;
-   line-height: 1.5rem;
-   margin: 0;
-   background: none;
-   border: none;
-   min-width: 1rem;
-   max-width: 1.5rem;
-   width: 1rem;
-   min-height: 1rem;
-   max-height: 1.5rem;
-   height: 1rem;
-  }
+
   #ca_alert {
    background: #fff;
    padding: 1rem;
@@ -128,9 +115,12 @@
    text-decoration: underline;
   }
   #close_button {
-   color: #888;
+   font-family: inherit;
+   min-height: 1rem;
+   max-height: 1.5rem;
+   color: #757575;
    border-radius: 50%;
-   border: 1px solid #888;
+   border: 1px solid #757575;
    background: #fff;
    height: 1.5rem;
    width: 1.5rem;

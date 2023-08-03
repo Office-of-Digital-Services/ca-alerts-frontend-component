@@ -2,17 +2,28 @@
 /* Node.JS Build Code */
 
 //Tokens to replace
-
-const tokenReplacements = [
+const tokenReplacementsBase = [
   { key: "[ALERT_HEADING]", value: "EMERGENCY ALERT" },
   {
     key: "[ALERT_BODY]",
     value:
-      "Governor Newsom has declared a state of emergency in all Sacramento counties."
+      "Governor Newsom has declared a state of emergency in all California counties."
   },
   { key: "[ALERT_TARGET_URL]", value: "https://ca.gov" },
-  { key: "[ALERT_LINK_CLASS_HIDDEN]", value: "''" },
+  { key: "[ALERT_LINK_CLASS_HIDDEN]", value: "''" }
+];
+
+const tokenReplacementsTest = [
+  ...tokenReplacementsBase,
   { key: "[ALERT_ACTIVE_MESSAGE_HTML_URL]", value: "alert_test.html" }
+];
+
+const tokenReplacementsSample = [
+  ...tokenReplacementsBase,
+  {
+    key: "[ALERT_ACTIVE_MESSAGE_HTML_URL]",
+    value: "https://alert.cdt.ca.gov/sample/sample-alert.html"
+  }
 ];
 
 const tokenFrameBody = "[frame_body]";
@@ -20,11 +31,12 @@ const tokenFrameBody = "[frame_body]";
 /**
  * Replaces tokens in a string with the key/value pairs defined in tokenReplacements
  * @param {string} s the string that contains tokens to be replaced
- * @example const newstring = replaceTokens(oldstring);
+ * @param {{key:string,value:string}[]} dict dictionary for value replacements
+ * @example const newstring = replaceTokens(oldstring, tokens);
  *
  */
-const replaceTokens = s => {
-  tokenReplacements.forEach(t => {
+const replaceTokens = (s, dict) => {
+  dict.forEach(t => {
     s = s.replace(t.key, t.value);
   });
 
@@ -54,6 +66,8 @@ const fs = require("fs");
 
 const targetDir = "_site";
 const distDir = `${targetDir}/dist`;
+const distSampleDir = `${distDir}/sample`;
+const distTemplatesDir = `${distDir}/templates`;
 const sourceDir = "alert_templates";
 const testSiteSourceDir = "test_page";
 const inputFrame = `${sourceDir}/iframe-border.html`;
@@ -84,17 +98,28 @@ const staticFilesToCopy = ["favicon.ico", "index.html"];
     htmlMinifyOptions
   );
 
-  // Replace the default ALERT_MESSAGE with the test message in normal
-  const htmlTemplateTest_Minified = replaceTokens(htmlTemplate_Minified);
-
   if (!fs.existsSync(targetDir)) fs.mkdirSync(targetDir);
   if (!fs.existsSync(distDir)) fs.mkdirSync(distDir);
-  fs.writeFileSync(`${distDir}/alert.html`, htmlTemplate_Minified, {
+  if (!fs.existsSync(distSampleDir)) fs.mkdirSync(distSampleDir);
+  if (!fs.existsSync(distTemplatesDir)) fs.mkdirSync(distTemplatesDir);
+
+  fs.writeFileSync(`${distTemplatesDir}/alert.html`, htmlTemplate_Minified, {
     encoding: "utf8"
   });
-  fs.writeFileSync(`${targetDir}/alert_test.html`, htmlTemplateTest_Minified, {
-    encoding: "utf8"
-  });
+  fs.writeFileSync(
+    `${targetDir}/alert_test.html`,
+    replaceTokens(htmlTemplate_Minified, tokenReplacementsTest),
+    {
+      encoding: "utf8"
+    }
+  );
+  fs.writeFileSync(
+    `${distSampleDir}/sample-alert.html`,
+    replaceTokens(htmlTemplate_Minified, tokenReplacementsSample),
+    {
+      encoding: "utf8"
+    }
+  );
 
   const JsCode_Minified =
     (
@@ -104,12 +129,17 @@ const staticFilesToCopy = ["favicon.ico", "index.html"];
       )
     ).code || "";
 
-  fs.writeFileSync(`${distDir}/alert.js`, JsCode_Minified, {
+  fs.writeFileSync(`${distTemplatesDir}/alert.js`, JsCode_Minified, {
     encoding: "utf8"
   });
   fs.writeFileSync(
     `${targetDir}/alert_test.js`,
-    replaceTokens(JsCode_Minified),
+    replaceTokens(JsCode_Minified, tokenReplacementsTest),
+    { encoding: "utf8" }
+  );
+  fs.writeFileSync(
+    `${distSampleDir}/sample-alert.js`,
+    replaceTokens(JsCode_Minified, tokenReplacementsSample),
     { encoding: "utf8" }
   );
 
