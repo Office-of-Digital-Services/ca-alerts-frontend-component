@@ -22,7 +22,7 @@ const tokenReplacementsSample = [
   ...tokenReplacementsBase,
   {
     key: "[ALERT_ACTIVE_MESSAGE_HTML_URL]",
-    value: "https://alert.cdt.ca.gov/sample/sample-alert.js"
+    value: "https://alert.cdt.ca.gov/sample/sample-alert.html"
   }
 ];
 
