@@ -12,7 +12,7 @@ This is the "active" mode code when alerts are in place that checks for dismiss 
   const messageSourceUrl = "[ALERT_ACTIVE_MESSAGE_HTML_URL]"; //This will be set to the HTML URL after the code is minified.
   const localStorageKey = "CaAlertsLocalStorageMessageDismissed";
 
-  const localStorageTestValue = "Alerts can't be displayed.";
+  const localStorageTestValue = `_${localStorageKey}_`;
   try {
     // Testing Local Storage compatibility
     _localStorage.setItem(localStorageTestValue, localStorageTestValue);
@@ -32,6 +32,6 @@ This is the "active" mode code when alerts are in place that checks for dismiss 
     }
   } catch {
     // Local storage does not work here
-    console.error(localStorageTestValue);
+    console.error("Alerts can't be displayed.");
   }
 })(document, localStorage);
