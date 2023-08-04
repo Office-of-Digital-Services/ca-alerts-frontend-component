@@ -15,36 +15,53 @@
 </div>
 <script>
   ((/** @type {Window} */ _window, /** @type {Document} */ _document) => {
-   const iFrame = _window.parent.document.getElementById("ca_alert_frame");
+    /**
+     * Minify friendly getElementById
+     */
+    const _getElementById = (
+      /** @type {Document} */ _Document,
+      /** @type {string} */ _id
+    ) => _Document.getElementById(_id);
 
-   /**
-    * Set the outer iFrame height to match the inner content
-    */
-   const updateFrameHeight = () => {
-     iFrame.style.height = `${
-       _document.getElementById("ca_alert").offsetHeight
-     }px`;
-     iFrame.className = ""; //Whatever classes we set to hide will be cleared
-   };
+    /**
+     * Minify friendly addEventListener
+     */
+    const _addEventListener = (
+      /** @type {Element | Window} */ _Element,
+      /** @type {string} */ _type,
+      /** @type {EventListener} */ _listener
+    ) => _Element.addEventListener(_type, _listener);
 
-   // Need to set the frame height when loaded AND during resize
-   _window.addEventListener("DOMContentLoaded", updateFrameHeight);
-   _window.addEventListener("resize", updateFrameHeight);
+    const iFrame = _getElementById(_window.parent.document, "ca_alert_frame");
 
-   _document.getElementById("close_button").addEventListener(
-     "click",
+    /**
+     * Set the outer iFrame height to match the inner content
+     */
+    const updateFrameHeight = () => {
+      iFrame.style.height = `${
+        _getElementById(_document, "ca_alert").offsetHeight
+      }px`;
+      iFrame.className = ""; //Whatever classes we set to hide will be cleared
+    };
 
-     () => {
-       iFrame.style.display = "none"; //Will not be overridden by a resize to remove the hidden class
+    // Need to set the frame height when loaded AND during resize
+    _addEventListener(_window, "DOMContentLoaded", updateFrameHeight);
+    _addEventListener(_window, "resize", updateFrameHeight);
+    _addEventListener(
+      _getElementById(_document, "close_button"),
+      "click",
 
-       //make sure CaAlertsLocalStorageMessageDismissed matches in alert-code.js
+      () => {
+        iFrame.style.display = "none"; //Will not be overridden by a resize to remove the hidden class
 
-       localStorage.setItem(
-         "CaAlertsLocalStorageMessageDismissed",
-         "[ALERT_ACTIVE_MESSAGE_HTML_URL]"
-       );
-     }
-   );
+        //make sure CaAlertsLocalStorageMessageDismissed matches in alert-code.js
+
+        localStorage.setItem(
+          "CaAlertsLocalStorageMessageDismissed",
+          "[ALERT_ACTIVE_MESSAGE_HTML_URL]"
+        );
+      }
+    );
   })(window, document);
 </script>
 <style>
@@ -83,7 +100,6 @@
   }
   a {
    color: #046b99;
-   text-decoration: underline;
   }
   button {
    font-family: inherit; /* needed for Safari */
