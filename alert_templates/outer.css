@@ -1,0 +1,15 @@
+iframe#ca_alert_frame {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2147483647;
+  max-width: 550px;
+  width: 85%;
+  border: 3px solid #e07000;
+  box-shadow: 0 6px 10px 0 #000000a8;
+  outline: 2px solid #fff;
+}
+iframe#ca_alert_frame.hidden {
+  display: none;
+}
