@@ -18,10 +18,8 @@
     /**
      * Minify friendly getElementById
      */
-    const _getElementById = (
-      /** @type {Document} */ _Document,
-      /** @type {string} */ _id
-    ) => _Document.getElementById(_id);
+     const _getElementById = (/** @type {string} */ _id) =>
+      _document.getElementById(_id);
 
     /**
      * Minify friendly addEventListener
@@ -38,7 +36,7 @@
      */
     const updateFrameHeight = () => {
       iFrame.style.height = `${
-        _getElementById(_document, "ca_alert").offsetHeight
+        _getElementById("ca_alert").offsetHeight
       }px`;
       iFrame.className = ""; //Whatever classes we set to hide will be cleared
     };
@@ -47,7 +45,7 @@
     _addEventListener(_window, "DOMContentLoaded", updateFrameHeight);
     _addEventListener(_window, "resize", updateFrameHeight);
     _addEventListener(
-      _getElementById(_document, "close_button"),
+      _getElementById("close_button"),
       "click",
 
       () => {
