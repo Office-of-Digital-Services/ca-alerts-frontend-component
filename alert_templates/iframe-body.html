@@ -29,7 +29,7 @@
      * Set the outer iFrame height to match the inner content
      */
     const updateFrameHeight = () => {
-      iFrame.height = _document.documentElement.offsetHeight.toString();
+      iFrame.height = `${_document.documentElement.offsetHeight}`;
       iFrame.className = ""; //Whatever classes we set to hide will be cleared
     };
 
