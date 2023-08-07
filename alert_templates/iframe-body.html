@@ -24,14 +24,12 @@
       /** @type {EventListener} */ _listener
     ) => _Element.addEventListener(_type, _listener);
 
-    const iFrame = /** @type {HTMLElement} */ (_window.frameElement);
+    const iFrame = /** @type {HTMLObjectElement} */ (_window.frameElement);
     /**
      * Set the outer iFrame height to match the inner content
      */
     const updateFrameHeight = () => {
-      iFrame.style.height = `${
-        _document.childNodes[0].offsetHeight
-      }px`;
+      iFrame.height = _document.documentElement.offsetHeight.toString();
       iFrame.className = ""; //Whatever classes we set to hide will be cleared
     };
 
@@ -41,16 +39,13 @@
     _addEventListener(_document.querySelector("button"),
       "click",
       () => {
-        iFrame.style.display = "none"; //Will not be overridden by a resize to remove the hidden class
+      localStorage.setItem(
+        "CaAlertsLocalStorageMessageDismissed", //make sure CaAlertsLocalStorageMessageDismissed matches in alert-code.js
+        "[ALERT_ACTIVE_MESSAGE_HTML_URL]"
+      );
 
-        //make sure CaAlertsLocalStorageMessageDismissed matches in alert-code.js
-
-        localStorage.setItem(
-          "CaAlertsLocalStorageMessageDismissed",
-          "[ALERT_ACTIVE_MESSAGE_HTML_URL]"
-        );
-      }
-    );
+      iFrame.parentNode.removeChild(iFrame);
+    });
   })(window, document);
 </script>
 <style>
