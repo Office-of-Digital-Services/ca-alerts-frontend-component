@@ -36,15 +36,13 @@
     // Need to set the frame height when loaded AND during resize
     _addEventListener(_window, "DOMContentLoaded", updateFrameHeight);
     _addEventListener(_window, "resize", updateFrameHeight);
-    _addEventListener(_document.querySelector("button"),
-      "click",
-      () => {
+    _addEventListener(_document.querySelector("button"), "click", () => {
+      iFrame.style.display = "none"; //Will not be overridden by a resize to remove the hidden class
+
       localStorage.setItem(
         "CaAlertsLocalStorageMessageDismissed", //make sure CaAlertsLocalStorageMessageDismissed matches in alert-code.js
         "[ALERT_ACTIVE_MESSAGE_HTML_URL]"
       );
-
-      iFrame.parentNode.removeChild(iFrame);
     });
   })(window, document);
 </script>
