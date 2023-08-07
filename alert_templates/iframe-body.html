@@ -1,4 +1,4 @@
-<div data-nosnippet id="ca_alert">
+<div data-nosnippet>
   <h1>[ALERT_HEADING]</h1>
   <p>
     [ALERT_BODY]
@@ -9,18 +9,12 @@
       >Get more info.</a
     >
   </p>
-  <button id="close_button" aria-label="Dismiss this alert">
+  <button aria-label="Dismiss this alert">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
 <script>
   ((/** @type {Window} */ _window, /** @type {Document} */ _document) => {
-    /**
-     * Minify friendly getElementById
-     */
-     const _getElementById = (/** @type {string} */ _id) =>
-      _document.getElementById(_id);
-
     /**
      * Minify friendly addEventListener
      */
@@ -36,7 +30,7 @@
      */
     const updateFrameHeight = () => {
       iFrame.style.height = `${
-        _getElementById("ca_alert").offsetHeight
+        _document.childNodes[0].offsetHeight
       }px`;
       iFrame.className = ""; //Whatever classes we set to hide will be cleared
     };
@@ -44,10 +38,8 @@
     // Need to set the frame height when loaded AND during resize
     _addEventListener(_window, "DOMContentLoaded", updateFrameHeight);
     _addEventListener(_window, "resize", updateFrameHeight);
-    _addEventListener(
-      _getElementById("close_button"),
+    _addEventListener(_document.querySelector("button"),
       "click",
-
       () => {
         iFrame.style.display = "none"; //Will not be overridden by a resize to remove the hidden class
 
@@ -64,17 +56,16 @@
 <style>
   body {
    margin: 0;
-  }
-  .hidden {
-   display: none; /* This is used to hide the link only, not for hiding the frame */
-  }
-  #ca_alert {
    background: #fff;
    padding: 1rem;
    font-family: Open-Sans, Arial, Helvetica, sans-serif;
    line-height: 1.5rem;
    color: #333;
   }
+  .hidden {
+   display: none; /* This is used to hide the link only, not for hiding the frame */
+  }
+
   p {
    margin: 0.5rem 0;
   }
