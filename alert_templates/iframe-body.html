@@ -32,8 +32,7 @@
       /** @type {EventListener} */ _listener
     ) => _Element.addEventListener(_type, _listener);
 
-    const iFrame = _getElementById(_window.parent.document, "ca_alert_frame");
-
+    const iFrame = /** @type {HTMLElement} */ (_window.frameElement);
     /**
      * Set the outer iFrame height to match the inner content
      */
