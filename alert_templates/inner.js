@@ -1,6 +1,6 @@
 // @ts-check
 
-((/** @type {Window} */ _window, /** @type {Document} */ _document) => {
+((_window, _document) => {
   /**
    * Minify friendly addEventListener
    */
@@ -20,7 +20,7 @@
   };
 
   // Need to set the frame height when loaded AND during resize
-  _addEventListener(_window, "DOMContentLoaded", updateFrameHeight);
+  _addEventListener(_window, "load", updateFrameHeight);
   _addEventListener(_window, "resize", updateFrameHeight);
   _addEventListener(_document.querySelector("button"), "click", () => {
     iFrame.style.display = "none"; //Will not be overridden by a resize to remove the hidden class
