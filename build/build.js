@@ -70,17 +70,28 @@ const distSampleDir = `${distDir}/sample`;
 const distTemplatesDir = `${distDir}/templates`;
 const sourceDir = "alert_templates";
 const testSiteSourceDir = "test_page";
-const inputFrame = `${sourceDir}/iframe-border.html`;
+const outerHtml = `${sourceDir}/outer.html`;
+const outerCss = `${sourceDir}/outer.css`;
 const inputJsFile = `${sourceDir}/alert-code.js`;
-const inputHtmlFile = `${sourceDir}/iframe-body.html`;
+const innerHtml = `${sourceDir}/inner.html`;
+const innerCss = `${sourceDir}/inner.css`;
+const innerJs = `${sourceDir}/inner.js`;
 const staticFilesToCopy = ["favicon.ico", "index.html"];
 
 (async () => {
   //The frame template has the iframe that goes on the outside
-  const htmlFrameTemplate = fs.readFileSync(inputFrame, { encoding: "utf8" });
+  const htmlFrameTemplate = `${fs.readFileSync(outerHtml, {
+    encoding: "utf8"
+  })}\n<style>\n${fs.readFileSync(outerCss, { encoding: "utf8" })}\n</style>`;
 
   //The body template goes inside the frame
-  const htmlBodyTemplate = fs.readFileSync(inputHtmlFile, { encoding: "utf8" });
+  const htmlBodyTemplate = `${fs.readFileSync(innerHtml, {
+    encoding: "utf8"
+  })}<style>\n${fs.readFileSync(innerCss, {
+    encoding: "utf8"
+  })}\n</style><script>\n${fs.readFileSync(innerJs, {
+    encoding: "utf8"
+  })}\n</script>`;
 
   const htmlBodyTemplate_Minified = await minifyHTML.minify(
     htmlBodyTemplate,
