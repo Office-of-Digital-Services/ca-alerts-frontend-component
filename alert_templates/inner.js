@@ -5,6 +5,7 @@
 
   const toggleHidden = () => {
     iFrame.classList.toggle("hidden");
+    iFrame.ariaBusy = "false";
   };
 
   const _addEventListener = (
@@ -18,9 +19,8 @@
   const controls = [..._document.querySelectorAll("*")]; //Everything in the document
   controls.forEach(c =>
     _addEventListener(c, "blur", (/** @type {FocusEvent} */ e) => {
-      if (!controls.includes(/** @type {Element} */ (e.relatedTarget))) {
-        iFrame.classList.add("locked");
-      }
+      if (!controls.includes(/** @type {Element} */ (e.relatedTarget)))
+        toggleHidden();
     })
   );
 

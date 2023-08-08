@@ -12,9 +12,3 @@ iframe#ca_alert_frame {
 iframe#ca_alert_frame.hidden {
   display: none;
 }
-iframe#ca_alert_frame.locked {
-  position: relative;
-  top: 0;
-  box-shadow: 0 3px 10px 1px #000000bf;
-  transition: box-shadow 1s, top 1s;
-}
