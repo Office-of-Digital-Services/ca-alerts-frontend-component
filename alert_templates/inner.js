@@ -16,16 +16,13 @@
   // Hide (Not dismiss) the alert if they tab in and then tab out.  Include everything that could be focused by a screen reader
   /** @type {Element[]} */
   const controls = [..._document.querySelectorAll("*")]; //Everything in the document
-  controls.forEach(c => {
+  controls.forEach(c =>
     _addEventListener(c, "blur", (/** @type {FocusEvent} */ e) => {
       if (!controls.includes(/** @type {Element} */ (e.relatedTarget))) {
-        iFrame.style.opacity = "0";
+        iFrame.classList.add("locked");
       }
-    });
-    _addEventListener(c, "focus", () => {
-      iFrame.style.opacity = "1";
-    });
-  });
+    })
+  );
 
   _addEventListener(_window, "load", toggleHidden);
 
