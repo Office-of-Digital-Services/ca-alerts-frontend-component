@@ -6,9 +6,8 @@ iframe#ca_alert_frame {
   z-index: 2147483647;
   max-width: 550px;
   width: 85%;
-  border: 3px solid #e07000;
-  box-shadow: 0 6px 10px 0 #000000a8;
-  outline: 2px solid #fff;
+  border: 3.5px solid #fbad23;
+  box-shadow: 0 25px 150px 15px #000000bf;
 }
 iframe#ca_alert_frame.hidden {
   display: none;
