@@ -13,6 +13,20 @@
     /** @type {EventListener} */ _listener
   ) => _Element.addEventListener(_type, _listener);
 
+  // Hide (Not dismiss) the alert if they tab in and then tab out.  Include everything that could be focused by a screen reader
+  /** @type {Element[]} */
+  const controls = [..._document.querySelectorAll("*")];
+  controls.forEach(c => {
+    _addEventListener(c, "blur", (/** @type {FocusEvent} */ e) => {
+      if (!controls.includes(/** @type {Element} */ (e.relatedTarget))) {
+        iFrame.style.opacity = "0";
+      }
+    });
+    _addEventListener(c, "focus", () => {
+      iFrame.style.opacity = "1";
+    });
+  });
+
   _addEventListener(_window, "load", toggleHidden);
 
   _addEventListener(_window, "resize", () => {
@@ -27,20 +41,5 @@
       "CaAlertsLocalStorageMessageDismissed", //make sure CaAlertsLocalStorageMessageDismissed matches in alert-code.js
       "[ALERT_ACTIVE_MESSAGE_HTML_URL]"
     );
-  });
-
-  /** @type {NodeListOf<Element>} */
-  const controls = _document.querySelectorAll("a, button");
-
-  controls.forEach(c => {
-    _addEventListener(c, "blur", () => {
-      iFrame.style.opacity = "0";
-      iFrame.ariaHidden = "true";
-    });
-
-    _addEventListener(c, "focus", () => {
-      iFrame.style.opacity = "1";
-      iFrame.ariaHidden = "";
-    });
   });
 })(window, document);
