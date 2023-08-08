@@ -28,4 +28,19 @@
       "[ALERT_ACTIVE_MESSAGE_HTML_URL]"
     );
   });
+
+  /** @type {NodeListOf<Element>} */
+  const controls = _document.querySelectorAll("a, button");
+
+  controls.forEach(c => {
+    _addEventListener(c, "blur", () => {
+      iFrame.style.opacity = "0";
+      iFrame.ariaHidden = "true";
+    });
+
+    _addEventListener(c, "focus", () => {
+      iFrame.style.opacity = "1";
+      iFrame.ariaHidden = "";
+    });
+  });
 })(window, document);
