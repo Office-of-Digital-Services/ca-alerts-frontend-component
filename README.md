@@ -2,6 +2,8 @@
 
 This is the build source for the ca.gov/alerts web snippet.
 
+## See a demo on your site
+
 To see what this alert will look like on your website, paste this code into your web browser console.
 
 1. Navigate to your website.
@@ -17,8 +19,9 @@ Once you have dismissed the message in your browser, it won't display again (by 
 ```Javascript
 localStorage.clear();
 ```
+## Installation
 
-Finally, to install the production service on your website, add the following HTML code to your `<HTML><HEAD>` section.
+To install the production service on your website, add the following HTML code to your `<HTML><HEAD>` section.
 ```HTML
 <html>
 ...
@@ -29,4 +32,24 @@ Finally, to install the production service on your website, add the following HT
 </head>
 ...
 ```
+## Optional installation
 
+If you don't have access to the `<HTML><HEAD>` section on your site, but you can still place `<SCRIPT>` tags in your content, you can create a Javascript section in the `<BDOY>` like this.
+```HTML
+<html>
+...
+<body>
+  ...
+  <script>
+      document.head.appendChild(
+        Object.assign(document.createElement("script"), {
+          src: "https://alert.cdt.ca.gov",
+          defer: true,
+          crossOrigin: "anonymous"
+        })
+      );
+  </script>
+  ...
+</body>
+...
+```
