@@ -4,9 +4,8 @@
   const iFrame = /** @type {HTMLObjectElement} */ (_window.frameElement);
 
   // Set the outer iFrame height to match the inner content
-  const _fixSize = () => {
-    iFrame.height = `${_document.documentElement.offsetHeight}`;
-  };
+  const _fixSize = () =>
+    (iFrame.height = `${_document.documentElement.offsetHeight}`);
 
   const _clearClass = () => (iFrame.className = "");
 
