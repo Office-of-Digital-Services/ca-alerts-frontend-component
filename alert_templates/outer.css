@@ -12,3 +12,6 @@ iframe#ca_alert_frame {
 iframe#ca_alert_frame.hidden {
   display: none;
 }
+iframe#ca_alert_frame.temphidden {
+  opacity: 0;
+}
