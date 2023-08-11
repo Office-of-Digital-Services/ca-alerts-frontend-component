@@ -3,6 +3,11 @@
 ((_window, _document) => {
   const iFrame = /** @type {HTMLObjectElement} */ (_window.frameElement);
 
+  // Set the outer iFrame height to match the inner content
+  const _fixSize = () => {
+    iFrame.height = `${_document.documentElement.offsetHeight}`;
+  };
+
   const _addEventListener = (
     /** @type {Element | Window} */ _Element,
     /** @type {string} */ _type,
@@ -21,12 +26,12 @@
     _addEventListener(c, "focus", () => iFrame.classList.remove("temphidden"));
   });
 
-  _addEventListener(_window, "load", () => iFrame.classList.remove("hidden"));
-
-  // Set the outer iFrame height to match the inner content
-  _addEventListener(_window, "resize", () => {
-    iFrame.height = `${_document.documentElement.offsetHeight}`;
+  _addEventListener(_window, "load", () => {
+    _fixSize(); //Needed on load for Safari only
+    iFrame.classList.remove("hidden");
   });
+
+  _addEventListener(_window, "resize", _fixSize);
 
   _addEventListener(_document.querySelector("button"), "click", () => {
     //Dismissed!

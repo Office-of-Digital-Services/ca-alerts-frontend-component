@@ -6,10 +6,9 @@ body {
   line-height: 1.5rem;
   color: #333;
 }
-.hidden {
+a.hidden {
   display: none; /* This is used to hide the link only, not for hiding the frame */
 }
-
 p {
   margin: 0.5rem 0;
 }
@@ -22,8 +21,8 @@ p,
 h1 {
   margin-left: 1.25rem;
 }
-h1::before {
-  content: "!";
+h1 > span {
+  /* icon */
   width: 1.5rem;
   background: #fbad23;
   border-radius: 50%;
