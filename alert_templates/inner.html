@@ -1,17 +1,15 @@
-<div data-nosnippet id="ca_alert" role="alertdialog" aria-labelledby="heading">
-  <div class="alert_container">
-    <div class="contents">
-      <h1 id="heading">[ALERT_HEADING]</h1>
-      <p class="message">
-        [ALERT_BODY]
-        <a
-          href="[ALERT_TARGET_URL]"
-          class="[ALERT_LINK_CLASS_HIDDEN]"
-          target="_parent"
-          >Get more info.</a
-        >
-      </p>
-    </div>
-    <button id="close_button" aria-label="Dismiss this alert">&times;</button>
-  </div>
+<div data-nosnippet role="alert">
+  <h1><span aria-hidden="true">!</span>[ALERT_HEADING]</h1>
+  <p>
+    [ALERT_BODY]
+    <a
+      href="[ALERT_TARGET_URL]"
+      class="[ALERT_LINK_CLASS_HIDDEN]"
+      target="_parent"
+      >Get more info.</a
+    >
+  </p>
+  <button title="Dismiss alert">
+    <span aria-hidden="true">&times;</span>
+  </button>
 </div>

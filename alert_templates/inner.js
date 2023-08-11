@@ -1,33 +1,46 @@
-//@ts-check
+// @ts-check
 
-(() => {
-  const iFrame = window.parent.document.getElementById("ca_alert_frame");
+((_window, _document) => {
+  const iFrame = /** @type {HTMLObjectElement} */ (_window.frameElement);
 
-  document.getElementById("close_button").addEventListener(
-    "click",
+  // Set the outer iFrame height to match the inner content
+  const _fixSize = () =>
+    (iFrame.height = `${_document.documentElement.offsetHeight}`);
 
-    () => {
-      iFrame.style.display = "none"; //Will not be overridden by a resize to remove the hidden class
+  const _clearClass = () => (iFrame.className = "");
 
-      //make sure CaAlertsLocalStorageMessageDismissed matches in alert-code.js
+  const _addEventListener = (
+    /** @type {Element | Window} */ _Element,
+    /** @type {string} */ _type,
+    /** @type {EventListener} */ _listener
+  ) => _Element.addEventListener(_type, _listener);
 
-      localStorage.setItem(
-        "CaAlertsLocalStorageMessageDismissed",
-        "[ALERT_ACTIVE_MESSAGE_HTML_URL]"
-      );
-    }
-  );
+  // Hide (Not dismiss) the alert if they tab in and then tab out.  Include everything that could be focused by a screen reader
+  /** @type {Element[]} */
+  const controls = [..._document.querySelectorAll("*")]; //Everything in the alert document
+  controls.forEach(c => {
+    _addEventListener(c, "blur", (/** @type {FocusEvent} */ e) => {
+      if (!controls.includes(/** @type {Element} */ (e.relatedTarget)))
+        iFrame.classList.add("temphidden");
+    });
 
-  /**
-   * Set the outer iFrame height to match the inner content
-   */
-  const updateFrameHeight = () => {
-    iFrame.style.height =
-      document.getElementById("ca_alert").offsetHeight + "px";
-    iFrame.className = ""; //Whatever classes we set to hide will be cleared
-  };
+    _addEventListener(c, "focus", _clearClass);
+  });
 
-  // Need to set the frame height when loaded AND during resize
-  window.addEventListener("DOMContentLoaded", updateFrameHeight);
-  window.addEventListener("resize", updateFrameHeight);
-})();
+  _addEventListener(_window, "load", () => {
+    _fixSize(); //Needed on load for Safari only
+    _clearClass();
+  });
+
+  _addEventListener(_window, "resize", _fixSize);
+
+  _addEventListener(_document.querySelector("button"), "click", () => {
+    //Dismissed!
+    iFrame.classList.add("hidden");
+
+    localStorage.setItem(
+      "CaAlertsLocalStorageMessageDismissed", //make sure CaAlertsLocalStorageMessageDismissed matches in alert-code.js
+      "[ALERT_ACTIVE_MESSAGE_HTML_URL]"
+    );
+  });
+})(window, document);

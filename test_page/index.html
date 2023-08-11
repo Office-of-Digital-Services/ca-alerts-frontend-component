@@ -1,29 +1,312 @@
-<html>
+<!DOCTYPE html>
+<html lang="en-US">
   <head>
-    <title>Test page</title>
-    <script defer src="alert_test.js" crossorigin="anonymous"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  </head>
-  <body>
-    <style>
-      /* Maximum Goofy CSS Declarations please */
-      body,
-      p,
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6 {
-       text-decoration: line-through;
-       color: red;
-       font-size: xx-large;
-       font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-       background-color: gray;
-      }
-    </style>
-    <p>This is the test page</p>
+    <title>Test Page - Alerts</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://california.azureedge.net/cdt/statetemplate/6.2.0/css/cagov.core.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://california.azureedge.net/cdt/statetemplate/6.2.0/css/colortheme-oceanside.min.css" />
+    <script src="https://california.azureedge.net/cdt/statetemplate/6.2.0/js/cagov.core.min.js"></script>
 
-    <button onclick="localStorage.clear();">Clear Local Storage</button>
+    <link rel="icon" href="data:," />
+    <script defer src="alert_test.js" crossorigin="anonymous"></script>
+  </head>
+  <body class="primary">
+    <header role="banner" id="header" class="global-header fixed">
+      <div id="skip-to-content">
+        <a href="#main-content">Skip to Main Content</a>
+      </div>
+      <div class="utility-header">
+        <div class="container">
+          <div class="flex-row">
+            <div class="social-media-links">
+              <div class="header-cagov-logo">
+                <a href="https://ca.gov">
+                  <span class="sr-only">CA.gov</span>
+                  <span class="ca-gov-logo-svg"></span>
+                </a>
+              </div>
+              <p class="official-tag">
+                <span class="desktop-only">Official website of the</span>
+                State of California
+              </p>
+            </div>
+            <div class="settings-links"></div>
+          </div>
+        </div>
+      </div>
+      <!-- header branding with light gray background -->
+      <div class="section-default">
+        <div class="branding">
+          <div class="header-organization-banner">
+            <a href="">
+              <div class="logo-assets">
+                <img
+                  src="https://template.webstandards.ca.gov/images/template-logo.png"
+                  class="logo-img"
+                  alt="State Template Logo"
+                  style="aspect-ratio: 80 / 70" />
+                <div class="logo-text">
+                  <span class="logo-state">State of California</span>
+                  <span class="logo-dept">Site name</span>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- mobile navigation controls -->
+      <div class="mobile-controls">
+        <span class="mobile-control-group mobile-header-icons">
+          <!-- Add more mobile controls here. These will be on the right side of the mobile page header section -->
+        </span>
+        <div class="mobile-control-group main-nav-icons">
+          <button
+            id="nav-icon3"
+            class="mobile-control toggle-menu"
+            aria-expanded="false"
+            aria-controls="navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span class="sr-only">Menu</span>
+          </button>
+        </div>
+      </div>
+      <div class="navigation-search full-width-nav container">
+        <div id="head-search" class="search-container featured-search">
+          <div class="container">
+            <form id="Search" class="pos-rel" action="serp.html">
+              <span class="sr-only" id="SearchInput">Custom Google Search</span>
+              <input
+                type="search"
+                name="q"
+                aria-labelledby="SearchInput"
+                placeholder="Search"
+                class="search-textfield" />
+              <button type="submit" class="gsc-search-button">
+                <span class="ca-gov-icon-search" aria-hidden="true"></span>
+                <span class="sr-only">Submit</span>
+              </button>
+              <div class="close-search-btn">
+                <button
+                  class="close-search gsc-clear-button border-0 bg-transparent pos-rel"
+                  type="reset">
+                  <span class="sr-only">Close</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- navigation types -->
+        <nav
+          id="navigation"
+          class="main-navigation dropdown"
+          aria-label="Main navigation">
+          <ul id="nav_list" class="top-level-nav">
+            <li class="nav-item">
+              <a class="first-level-link" href="sample.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="first-level-link" href="sample.html">Samples</a>
+            </li>
+
+            <li class="nav-item" role="presentation">
+              <a href="getting-started.html" class="first-level-link">Other</a>
+              <div class="sub-nav">
+                <ul class="second-level-nav">
+                  <li class="unit1">
+                    <a href="sample.html" class="second-level-link"
+                      >Contact Us</a
+                    >
+                  </li>
+                  <li class="unit1">
+                    <a href="sample.html" class="second-level-link">About</a>
+                  </li>
+                  <li class="unit1">
+                    <a href="sample.html" class="second-level-link"
+                      >Blank Page</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <div id="main-content" class="main-content">
+      <div class="container p-t-md">
+        <main class="main-primary" id="main">
+          <nav aria-label="You are here" class="breadcrumbs">
+            <ol>
+              <li>
+                <a href="sample.html" title="Home page">Home</a>
+              </li>
+              <li>About</li>
+            </ol>
+          </nav>
+          <div class="row">
+            <div class="col-md-10 p-b-lg mx-auto">
+              <h1 class="mt-lg-0">Emergency Alert Sample Page</h1>
+
+              <nav class="page-navigation"></nav>
+
+              <p class="lead">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Nibh
+                mauris cursus mattis molestie a iaculis at erat. Venenatis cras
+                sed felis eget velit aliquet sagittis id consectetur. Sit amet
+                consectetur adipiscing elit ut aliquam purus sit. Ipsum faucibus
+                vitae aliquet nec ullamcorper sit amet risus nullam. Maecenas
+                volutpat blandit aliquam etiam erat velit scelerisque in. Vitae
+                ultricies leo integer malesuada nunc vel risus. Sem nulla
+                pharetra diam sit. Ut tortor pretium viverra suspendisse. Erat
+                imperdiet sed euismod nisi. Est velit egestas dui id ornare arcu
+                odio ut sem. Id aliquet risus feugiat in ante. Turpis massa
+                tincidunt dui ut ornare lectus sit. Donec ac odio tempor orci
+                dapibus ultrices. Leo integer malesuada nunc vel risus commodo.
+                Turpis in eu mi bibendum.
+              </p>
+
+              <h2>Lorem ipsum</h2>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Nibh
+                mauris cursus mattis molestie a iaculis at erat. Venenatis cras
+                sed felis eget velit aliquet sagittis id consectetur. Sit amet
+                consectetur adipiscing elit ut aliquam purus sit. Ipsum faucibus
+                vitae aliquet nec ullamcorper sit amet risus nullam. Maecenas
+                volutpat blandit aliquam etiam erat velit scelerisque in. Vitae
+                ultricies leo integer malesuada nunc vel risus. Sem nulla
+                pharetra diam sit. Ut tortor pretium viverra suspendisse. Erat
+                imperdiet sed euismod nisi. Est velit egestas dui id ornare arcu
+                odio ut sem. Id aliquet risus feugiat in ante. Turpis massa
+                tincidunt dui ut ornare lectus sit. Donec ac odio tempor orci
+                dapibus ultrices. Leo integer malesuada nunc vel risus commodo.
+                Turpis in eu mi bibendum.
+              </p>
+
+              <h2>Lorem ipsum</h2>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Nibh
+                mauris cursus mattis molestie a iaculis at erat. Venenatis cras
+                sed felis eget velit aliquet sagittis id consectetur. Sit amet
+                consectetur adipiscing elit ut aliquam purus sit. Ipsum faucibus
+                vitae aliquet nec ullamcorper sit amet risus nullam. Maecenas
+                volutpat blandit aliquam etiam erat velit scelerisque in. Vitae
+                ultricies leo integer malesuada nunc vel risus. Sem nulla
+                pharetra diam sit. Ut tortor pretium viverra suspendisse. Erat
+                imperdiet sed euismod nisi. Est velit egestas dui id ornare arcu
+                odio ut sem. Id aliquet risus feugiat in ante. Turpis massa
+                tincidunt dui ut ornare lectus sit. Donec ac odio tempor orci
+                dapibus ultrices. Leo integer malesuada nunc vel risus commodo.
+                Turpis in eu mi bibendum.
+              </p>
+
+              <h2>Lorem ipsum</h2>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Nibh
+                mauris cursus mattis molestie a iaculis at erat. Venenatis cras
+                sed felis eget velit aliquet sagittis id consectetur. Sit amet
+                consectetur adipiscing elit ut aliquam purus sit. Ipsum faucibus
+                vitae aliquet nec ullamcorper sit amet risus nullam. Maecenas
+                volutpat blandit aliquam etiam erat velit scelerisque in. Vitae
+                ultricies leo integer malesuada nunc vel risus. Sem nulla
+                pharetra diam sit. Ut tortor pretium viverra suspendisse. Erat
+                imperdiet sed euismod nisi. Est velit egestas dui id ornare arcu
+                odio ut sem. Id aliquet risus feugiat in ante. Turpis massa
+                tincidunt dui ut ornare lectus sit. Donec ac odio tempor orci
+                dapibus ultrices. Leo integer malesuada nunc vel risus commodo.
+                Turpis in eu mi bibendum.
+              </p>
+
+              <h2>Lorem ipsum</h2>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Nibh
+                mauris cursus mattis molestie a iaculis at erat. Venenatis cras
+                sed felis eget velit aliquet sagittis id consectetur. Sit amet
+                consectetur adipiscing elit ut aliquam purus sit. Ipsum faucibus
+                vitae aliquet nec ullamcorper sit amet risus nullam. Maecenas
+                volutpat blandit aliquam etiam erat velit scelerisque in. Vitae
+                ultricies leo integer malesuada nunc vel risus. Sem nulla
+                pharetra diam sit. Ut tortor pretium viverra suspendisse. Erat
+                imperdiet sed euismod nisi. Est velit egestas dui id ornare arcu
+                odio ut sem. Id aliquet risus feugiat in ante. Turpis massa
+                tincidunt dui ut ornare lectus sit. Donec ac odio tempor orci
+                dapibus ultrices. Leo integer malesuada nunc vel risus commodo.
+                Turpis in eu mi bibendum.
+              </p>
+            </div>
+          </div>
+          <button onclick="localStorage.clear();window.location.reload();">
+            (Restore the Alert)
+          </button>
+        </main>
+      </div>
+    </div>
+    <!-- Global Footer -->
+    <footer id="footer" class="global-footer">
+      <div class="container">
+        <div class="d-flex">
+          <a href="https://ca.gov" class="cagov-logo">
+            <span class="sr-only">CA.gov</span>
+            <span class="ca-gov-logo-svg"></span>
+          </a>
+          <ul class="footer-links">
+            <li>
+              <a href="conditions-of-use.html">Conditions of use</a>
+            </li>
+            <li>
+              <a href="privacy-policy.html">Privacy policy</a>
+            </li>
+            <li>
+              <a
+                href="images/WebAccessibilityCert-template.webstandards.ca.gov.pdf">
+                Website accessibility certification
+              </a>
+            </li>
+            <li>
+              <a href="sitemap.html">Sitemap</a>
+            </li>
+          </ul>
+          <ul class="socialsharer-container">
+            <li>
+              <a
+                href="https://github.com/Office-of-Digital-Innovation/California-State-Web-Template">
+                <span class="ca-gov-icon-github" aria-hidden="true"></span>
+                <span class="sr-only">GitHub</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- Copyright Statement -->
+      <div class="copyright">
+        <div class="container text-right">
+          Copyright &copy;
+          <span id="thisyear">
+            <script>
+              document
+                .getElementById("thisyear")
+                .appendChild(document.createTextNode(new Date().getFullYear()));
+            </script>
+          </span>
+          State of California
+        </div>
+      </div>
+      <button class="return-top">
+        <span class="sr-only">Back to top</span>
+      </button>
+    </footer>
   </body>
 </html>

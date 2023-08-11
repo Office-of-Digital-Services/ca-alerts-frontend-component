@@ -6,9 +6,20 @@ iframe#ca_alert_frame {
   z-index: 2147483647;
   max-width: 550px;
   width: 85%;
-  border: 3px solid #f6c244;
-  box-shadow: 0 4px 8px 0 #000000a8;
+  border: 3.5px solid #fbad23;
+  box-shadow: 0 25px 150px 15px #000000bf;
 }
 iframe#ca_alert_frame.hidden {
   display: none;
+}
+iframe#ca_alert_frame.temphidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
 }
