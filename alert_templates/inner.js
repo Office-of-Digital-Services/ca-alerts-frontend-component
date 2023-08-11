@@ -8,6 +8,8 @@
     iFrame.height = `${_document.documentElement.offsetHeight}`;
   };
 
+  const _clearClass = () => (iFrame.className = "");
+
   const _addEventListener = (
     /** @type {Element | Window} */ _Element,
     /** @type {string} */ _type,
@@ -23,12 +25,12 @@
         iFrame.classList.add("temphidden");
     });
 
-    _addEventListener(c, "focus", () => iFrame.classList.remove("temphidden"));
+    _addEventListener(c, "focus", _clearClass);
   });
 
   _addEventListener(_window, "load", () => {
     _fixSize(); //Needed on load for Safari only
-    iFrame.classList.remove("hidden");
+    _clearClass();
   });
 
   _addEventListener(_window, "resize", _fixSize);
