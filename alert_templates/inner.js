@@ -18,18 +18,13 @@
         iFrame.classList.add("temphidden");
     });
 
-    _addEventListener(c, "focus", () => {
-      iFrame.classList.remove("temphidden");
-    });
+    _addEventListener(c, "focus", () => iFrame.classList.remove("temphidden"));
   });
 
-  _addEventListener(_window, "load", () => {
-    iFrame.classList.remove("hidden");
-    iFrame.ariaBusy = "false";
-  });
+  _addEventListener(_window, "load", () => iFrame.classList.remove("hidden"));
 
+  // Set the outer iFrame height to match the inner content
   _addEventListener(_window, "resize", () => {
-    // Set the outer iFrame height to match the inner content
     iFrame.height = `${_document.documentElement.offsetHeight}`;
   });
 
