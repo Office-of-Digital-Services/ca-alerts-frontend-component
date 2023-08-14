@@ -34,7 +34,7 @@ To install the production service on your website, add the following HTML code t
 ```
 ## Optional installation
 
-If you don't have access to the `<HTML><HEAD>` section on your site, but you can still place `<SCRIPT>` tags in your content, you can create a Javascript section in the `<BDOY>` like this.
+If you don't have access to the `<HTML><HEAD>` section on your site, but you can still place `<SCRIPT>` tags in your content, you can create a Javascript section in the `<BODY>` like this.
 ```HTML
 <html>
 ...
