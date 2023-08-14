@@ -11,6 +11,7 @@ This is the "active" mode code when alerts are in place that checks for dismiss 
 ((_document, _localStorage) => {
   const messageSourceUrl = "[ALERT_ACTIVE_MESSAGE_HTML_URL]"; //This will be set to the HTML URL after the code is minified.
   const localStorageKey = "CaAlertsLocalStorageMessageDismissed";
+  const documentBody = _document.body;
 
   const localStorageTestValue = `_${localStorageKey}_`;
   try {
@@ -24,9 +25,9 @@ This is the "active" mode code when alerts are in place that checks for dismiss 
         .then(response => response.text())
         .then(
           html =>
-            (_document.body.insertBefore(
+            (documentBody.insertBefore(
               _document.createElement("iframe"),
-              _document.body.childNodes[0]
+              documentBody.children[0]
             ).outerHTML = html)
         );
     }

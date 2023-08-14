@@ -2,10 +2,12 @@
 
 ((_window, _document) => {
   const iFrame = /** @type {HTMLObjectElement} */ (_window.frameElement);
+  const iFrameClassList = iFrame.classList;
 
   // Set the outer iFrame height to match the inner content
   const _fixSize = () =>
-    (iFrame.height = `${_document.documentElement.offsetHeight}`);
+    // @ts-ignore
+    (iFrame.height = _document.documentElement.offsetHeight);
 
   const _clearFrameClass = () => (iFrame.className = "");
 
@@ -17,8 +19,8 @@
 
   // Hide (Not dismiss) the alert if they tab in and then tab out.
   _addEventListener(_document, "focusout", (/** @type {FocusEvent} */ e) => {
-    if (!_document.contains(/** @type {Element} */ (e.relatedTarget)))
-      iFrame.classList.add("temphidden");
+    if (!_document.contains(/** @type {Node} */ (e.relatedTarget)))
+      iFrameClassList.add("temphidden");
   });
   _addEventListener(_document, "focusin", _clearFrameClass);
 
@@ -31,7 +33,7 @@
 
   _addEventListener(_document.querySelector("button"), "click", () => {
     //Dismissed!
-    iFrame.classList.add("hidden");
+    iFrameClassList.add("hidden");
 
     localStorage.setItem(
       "CaAlertsLocalStorageMessageDismissed", //make sure CaAlertsLocalStorageMessageDismissed matches in alert-code.js
