@@ -1,4 +1,4 @@
-iframe#ca_alert_frame {
+iframe#ca-alert-frame {
   position: fixed;
   top: 10px;
   left: 50%;
@@ -9,10 +9,12 @@ iframe#ca_alert_frame {
   border: 3.5px solid #fbad23;
   box-shadow: 0 25px 150px 15px #000000bf;
 }
-iframe#ca_alert_frame.hidden {
+
+iframe#ca-alert-frame.hidden {
   display: none;
 }
-iframe#ca_alert_frame.temphidden {
+
+iframe#ca-alert-frame.temphidden {
   width: 1px !important;
   height: 1px !important;
   padding: 0 !important;
