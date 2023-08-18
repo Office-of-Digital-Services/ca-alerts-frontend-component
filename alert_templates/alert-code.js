@@ -27,7 +27,7 @@ This is the "active" mode code when alerts are in place that checks for dismiss 
           html =>
             (documentBody.insertBefore(
               _document.createElement("iframe"),
-              documentBody.children[0]
+              documentBody.firstChild
             ).outerHTML = html)
         );
     }
