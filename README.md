@@ -53,3 +53,23 @@ If you don't have access to the `<HTML><HEAD>` section on your site, but you can
 </body>
 ...
 ```
+
+## Verify Deployment
+
+Once you have code properly installed, you can run this script in the Developer console on your site to verify installation.
+
+```Javascript
+alert(
+  `Alert installation ${
+    [...document.head.getElementsByTagName("script")].find(
+      x =>
+        x.src == "https://alert.cdt.ca.gov/" &&
+        x.defer == true &&
+        x.crossOrigin == "anonymous"
+    )
+      ? "✅ Pass"
+      : "❌ Fail"
+  }`
+);
+```
+
