@@ -1,4 +1,4 @@
-iframe#ca_alert_frame {
+iframe#ca-alert-frame {
   position: fixed;
   top: 10px;
   left: 50%;
@@ -9,17 +9,18 @@ iframe#ca_alert_frame {
   border: 3.5px solid #fbad23;
   box-shadow: 0 25px 150px 15px #000000bf;
 }
-iframe#ca_alert_frame.hidden {
+
+iframe#ca-alert-frame.hidden {
   display: none;
 }
-iframe#ca_alert_frame.temphidden {
-  position: absolute !important;
-  width: 1px !important;
-  height: 1px !important;
-  padding: 0 !important;
-  margin: -1px !important;
-  overflow: hidden !important;
-  clip: rect(0, 0, 0, 0) !important;
-  white-space: nowrap !important;
-  border: 0 !important;
+
+iframe#ca-alert-frame.temphidden {
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
