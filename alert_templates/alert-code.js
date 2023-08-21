@@ -5,8 +5,8 @@ This is the "active" mode code when alerts are in place that checks for dismiss 
 */
 
 window.addEventListener("load", () => {
-  const _document = document;
-  const _localStorage = localStorage;
+  const _document = document; //For minification
+  const _localStorage = localStorage; //For minification
   const messageSourceUrl = "[ALERT_ACTIVE_MESSAGE_HTML_URL]"; //This will be set to the HTML URL after the code is minified.
   const targetURL = "[ALERT_TARGET_URL]";
   const localStorageKey = "CaAlertsLocalStorageMessageDismissed";
