@@ -3,10 +3,11 @@
 ((_window, _document) => {
   const iFrame = /** @type {HTMLObjectElement} */ (_window.frameElement);
   const iFrameClassList = iFrame.classList;
+  const tempHiddenClassName = "temphidden";
 
   // If visible, set the outer iFrame height to match the inner content
   const _fixSize = () =>
-    (iFrame.style.height = iFrame.className
+    (iFrame.style.height = iFrame.classList.contains(tempHiddenClassName)
       ? ""
       : `${_document.documentElement.offsetHeight}px`);
 
@@ -21,7 +22,7 @@
   // Hide (Not dismiss) the alert if they tab in and then tab out.
   _addEventListener(_document, "focusout", (/** @type {FocusEvent} */ e) => {
     if (!_document.contains(/** @type {Node} */ (e.relatedTarget)))
-      iFrameClassList.add("temphidden");
+      iFrameClassList.add(tempHiddenClassName);
   });
   _addEventListener(_document, "focusin", _clearFrameClass);
 
