@@ -16,7 +16,8 @@ This is the "active" mode code when alerts are in place that checks for dismiss 
 
   const localStorageTestValue = `_${localStorageKey}_`;
 
-  if (targetURL == _document.URL) return; //If we are viewing the target URL page then don't display anything
+  //If we are viewing the target URL page then don't display anything
+  if (_document.URL == targetURL) return;
 
   try {
     // Testing Local Storage compatibility
