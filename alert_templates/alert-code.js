@@ -9,15 +9,12 @@ This is the "active" mode code when alerts are in place that checks for dismiss 
  * @param {Storage} _localStorage
  */
 ((_document, _localStorage) => {
+  // If we are viewing the target URL page then don't display anything
+  if (_document.URL == "[ALERT_TARGET_URL]") return;
   const messageSourceUrl = "[ALERT_ACTIVE_MESSAGE_HTML_URL]"; //This will be set to the HTML URL after the code is minified.
-  const targetURL = "[ALERT_TARGET_URL]";
   const localStorageKey = "CaAlertsLocalStorageMessageDismissed";
-  const documentBody = _document.body;
-
+  const documentBody = _document.body; //For minification
   const localStorageTestValue = `_${localStorageKey}_`;
-
-  //If we are viewing the target URL page then don't display anything
-  if (_document.URL == targetURL) return;
 
   try {
     // Testing Local Storage compatibility
