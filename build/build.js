@@ -51,7 +51,8 @@ const htmlMinifyOptions = {
   removeTagWhitespace: true,
   collapseWhitespace: true,
   minifyCSS: true,
-  minifyJS: true
+  minifyJS: true,
+  removeComments: true
 };
 
 /**
