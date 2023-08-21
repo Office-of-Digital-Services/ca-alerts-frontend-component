@@ -4,16 +4,17 @@
 This is the "active" mode code when alerts are in place that checks for dismiss before rendering
 */
 
-window.addEventListener("load", () => {
-  const messageSourceUrl = "[ALERT_ACTIVE_MESSAGE_HTML_URL]"; //This will be set to the HTML URL after the code is minified.
-  const localStorageKey = "CaAlertsLocalStorageMessageDismissed";
-  const _document = document; //For minification
-  const _localStorage = localStorage; //For minification
-  const documentBody = _document.body; //For minification
-  const localStorageTestValue = `_${localStorageKey}_`;
-
+/**
+ * @param {Document} _document
+ * @param {Storage} _localStorage
+ */
+((_document, _localStorage) => {
   // If we are viewing the target URL page then don't display anything
   if (_document.URL == "[ALERT_TARGET_URL]") return;
+  const messageSourceUrl = "[ALERT_ACTIVE_MESSAGE_HTML_URL]"; //This will be set to the HTML URL after the code is minified.
+  const localStorageKey = "CaAlertsLocalStorageMessageDismissed";
+  const documentBody = _document.body; //For minification
+  const localStorageTestValue = `_${localStorageKey}_`;
 
   try {
     // Testing Local Storage compatibility
@@ -36,4 +37,4 @@ window.addEventListener("load", () => {
     // Local storage does not work here
     console.error("Alerts can't be displayed.");
   }
-});
+})(document, localStorage);
