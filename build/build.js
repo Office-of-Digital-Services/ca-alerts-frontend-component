@@ -7,9 +7,9 @@ const tokenReplacementsBase = [
   {
     key: "[ALERT_BODY]",
     value:
-      "Governor Newsom has declared a state of emergency in all California counties."
+      "Governor Newsom has declared a state of emergency in all California counties. Sign up now to receive emergency alerts about impacts in your local area."
   },
-  { key: "[ALERT_TARGET_URL]", value: "https://ca.gov" },
+  { key: "[ALERT_TARGET_URL]", value: "https://calalerts.org/" },
   { key: "[ALERT_LINK_CLASS_HIDDEN]", value: "''" }
 ];
 
