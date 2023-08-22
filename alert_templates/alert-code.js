@@ -24,7 +24,7 @@ This is the "active" mode code when alerts are in place that checks for dismiss 
             if (response.ok) {
               return response;
             } else {
-              throw new Error("bad stff");
+              throw new Error();
             }
           })
           .then(response => response.text())
@@ -35,7 +35,7 @@ This is the "active" mode code when alerts are in place that checks for dismiss 
                 _documentBody.firstChild
               ).outerHTML = html)
           )
-          .catch(e => alert(e));
+          .catch(fetchError => fetchError);
       }
     } catch (localStorageError) {
       // Local storage does not work here.
@@ -54,4 +54,4 @@ This is the "active" mode code when alerts are in place that checks for dismiss 
       loadAlert();
     }
   }
-})("[ALERT_ACTIVE_MESSAGE_HTML_URL]xxx");
+})("https://alert.cdt.ca.gov/404");
