@@ -22,16 +22,17 @@ This is the "active" mode code when alerts are in place that checks for dismiss 
         fetch(messageSourceUrl)
           .then(async response => {
             if (response.ok) {
+              // found the HTML template
               return (_documentBody.insertBefore(
                 _document.createElement("iframe"),
                 _documentBody.firstChild
               ).outerHTML = await response.text());
             } else {
+              // Response is NOT ok.  Error out of this promise.
               throw new Error();
             }
           })
-
-          .catch(fetchError => fetchError);
+          .catch(fetchError => fetchError); // Fetch Errors will just not display the alert.
       }
     } catch (localStorageError) {
       // Local storage does not work here.
@@ -50,4 +51,4 @@ This is the "active" mode code when alerts are in place that checks for dismiss 
       loadAlert();
     }
   }
-})("https://alert.cdt.ca.gov/404");
+})("[ALERT_ACTIVE_MESSAGE_HTML_URL]");
