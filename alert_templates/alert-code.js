@@ -29,10 +29,10 @@ This is the "active" mode code when alerts are in place that checks for dismiss 
               ).outerHTML = html)
           );
       }
-    } catch (e) {
+    } catch (localStorageError) {
       // Local storage does not work here.
 
-      console.log(e); //Put the error in the log, but don't disrupt the page by throwing it
+      console.log(localStorageError); //Put the error in the log, but don't disrupt the page by throwing it
     }
   };
 
