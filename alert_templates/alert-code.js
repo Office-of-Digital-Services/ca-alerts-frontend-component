@@ -20,6 +20,13 @@ This is the "active" mode code when alerts are in place that checks for dismiss 
       if (_localStorage.getItem(localStorageKey) != messageSourceUrl) {
         //fetch the html template to render and put it in the DOM
         fetch(messageSourceUrl)
+          .then(response => {
+            if (response.ok) {
+              return response;
+            } else {
+              throw new Error("bad stff");
+            }
+          })
           .then(response => response.text())
           .then(
             html =>
@@ -27,7 +34,8 @@ This is the "active" mode code when alerts are in place that checks for dismiss 
                 _document.createElement("iframe"),
                 _documentBody.firstChild
               ).outerHTML = html)
-          );
+          )
+          .catch(e => alert(e));
       }
     } catch (localStorageError) {
       // Local storage does not work here.
@@ -46,4 +54,4 @@ This is the "active" mode code when alerts are in place that checks for dismiss 
       loadAlert();
     }
   }
-})("[ALERT_ACTIVE_MESSAGE_HTML_URL]");
+})("[ALERT_ACTIVE_MESSAGE_HTML_URL]xxx");
