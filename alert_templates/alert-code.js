@@ -20,21 +20,17 @@ This is the "active" mode code when alerts are in place that checks for dismiss 
       if (_localStorage.getItem(localStorageKey) != messageSourceUrl) {
         //fetch the html template to render and put it in the DOM
         fetch(messageSourceUrl)
-          .then(response => {
+          .then(async response => {
             if (response.ok) {
-              return response;
+              return (_documentBody.insertBefore(
+                _document.createElement("iframe"),
+                _documentBody.firstChild
+              ).outerHTML = await response.text());
             } else {
               throw new Error();
             }
           })
-          .then(response => response.text())
-          .then(
-            html =>
-              (_documentBody.insertBefore(
-                _document.createElement("iframe"),
-                _documentBody.firstChild
-              ).outerHTML = html)
-          )
+
           .catch(fetchError => fetchError);
       }
     } catch (localStorageError) {
