@@ -23,10 +23,10 @@ This is the "active" mode code when alerts are in place that checks for dismiss 
           .then(async response => {
             if (response.ok) {
               // found the HTML template
-              return (_documentBody.insertBefore(
+              _documentBody.insertBefore(
                 _document.createElement("iframe"),
                 _documentBody.firstChild
-              ).outerHTML = await response.text());
+              ).outerHTML = await response.text();
             } else {
               // Response is NOT ok.  Error out of this promise.
               throw new Error();
