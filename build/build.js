@@ -66,7 +66,7 @@ const minifyHTML = require("html-minifier-terser");
 const fs = require("fs");
 
 const targetDir = "_site";
-const distDir = `${targetDir}/dist`;
+const distDir = "dist";
 const distSampleDir = `${distDir}/sample`;
 const distTemplatesDir = `${distDir}/templates`;
 const sourceDir = "alert_templates";
