@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "definitions": {
+    "date-YYYY-MM-DD": {
+      "type": "string",
+      "pattern": "^\\d{4}-(?:0[0-9]{1}|1[0-2]{1})-(3[01]|0[1-9]|[12][0-9]).*$",
+      "maxLength": 33
+    }
+  },
+  "type": "object",
+  "required": ["$schema", "active", "Heading", "CreatedAt", "Message", "Url"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "The link to the schema.",
+      "examples": [
+        "https://alert.cdt.ca.gov/alerts.schema.json",
+        "./alerts.schema.json"
+      ],
+      "default": ["https://alert.cdt.ca.gov/alerts.schema.json"]
+    },
+    "active": {
+      "type": "boolean",
+      "description": "`true` for an active alert, else ignore other fields."
+    },
+    "Heading": {
+      "type": "string",
+      "description": "The heading that should appear at the top of the alert.",
+      "maxLength": 500,
+      "examples": ["EMERGENCY ALERT"]
+    },
+    "CreatedAt": {
+      "description": "When this alert was created.  ISO Date.",
+      "examples": ["2023-08-22T12:19:30.5629019-07:00"],
+      "$ref": "#/definitions/date-YYYY-MM-DD"
+    },
+    "Message": {
+      "type": "string",
+      "description": "The message body of the alert.",
+      "maxLength": 1000,
+      "examples": [
+        "The Governor has declared a state of emergency in all California counties."
+      ]
+    },
+    "Url": {
+      "description": "The Url to navigate to when the user selects 'Get more info'.  A value of 'null' means hide the link.",
+      "examples": ["https://ca.gov/"],
+      "maxLength": 500,
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  }
+}
