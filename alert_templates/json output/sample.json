@@ -1,0 +1,8 @@
+{
+  "$schema": "./alerts.schema.json",
+  "active": true,
+  "Heading": "EMERGENCY ALERT",
+  "CreatedAt": "2023-08-22T12:19:30.5629019-07:00",
+  "Message": "The Governor has declared a state of emergency in all California counties.",
+  "Url": "https://ca.gov/"
+}
