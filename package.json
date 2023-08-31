@@ -4,7 +4,7 @@
   "description": "",
   "type": "commonjs",
   "scripts": {
-    "build": "node build/build.js",
+    "build": "node build/build.cjs",
     "browse": "http-server ./_site -o"
   },
   "keywords": [],
