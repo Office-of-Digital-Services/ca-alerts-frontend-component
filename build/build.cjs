@@ -1,15 +1,17 @@
 //@ts-check
 /* Node.JS Build Code */
 
+//JSON Sample
+const sampleData = require("../alert_templates/json output/sample.json");
+
 //Tokens to replace
 const tokenReplacementsBase = [
-  { key: "[ALERT_HEADING]", value: "EMERGENCY ALERT" },
+  { key: "[ALERT_HEADING]", value: sampleData.Heading },
   {
     key: "[ALERT_BODY]",
-    value:
-      "The Governor has declared a state of emergency in all California counties."
+    value: sampleData.Message
   },
-  { key: "[ALERT_TARGET_URL]", value: "https://ca.gov/" },
+  { key: "[ALERT_TARGET_URL]", value: sampleData.Url },
   { key: "[ALERT_LINK_CLASS_HIDDEN]", value: "''" }
 ];
 
