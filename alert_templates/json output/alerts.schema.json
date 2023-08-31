@@ -1,12 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
-  "definitions": {
-    "date-YYYY-MM-DD": {
-      "type": "string",
-      "pattern": "^\\d{4}-(?:0[0-9]{1}|1[0-2]{1})-(3[01]|0[1-9]|[12][0-9]).*$",
-      "maxLength": 33
-    }
-  },
+  "description": "JSON Schema for https://alert.cdt.ca.gov/alerts.json\nFor more information visit the source repo...\nhttps://github.com/Office-of-Digital-Services/ca-alerts-frontend-component",
   "type": "object",
   "required": ["$schema", "active", "Heading", "CreatedAt", "Message", "Url"],
   "additionalProperties": false,
@@ -33,7 +27,9 @@
     "CreatedAt": {
       "description": "When this alert was created.  ISO Date.",
       "examples": ["2023-08-22T12:19:30.5629019-07:00"],
-      "$ref": "#/definitions/date-YYYY-MM-DD"
+      "type": "string",
+      "format": "date-time",
+      "maxLength": 33
     },
     "Message": {
       "type": "string",
@@ -46,10 +42,10 @@
     "Url": {
       "description": "The Url to navigate to when the user selects 'Get more info'.  A value of 'null' means hide the link.",
       "examples": ["https://ca.gov/"],
-      "maxLength": 500,
       "oneOf": [
         {
-          "type": "string"
+          "type": "string",
+          "maxLength": 5
         },
         {
           "type": "null"
