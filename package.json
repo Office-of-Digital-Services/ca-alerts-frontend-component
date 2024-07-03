@@ -5,7 +5,7 @@
   "type": "commonjs",
   "scripts": {
     "build": "node build/build.cjs",
-    "browse": "http-server ./_site -o"
+    "browse": "http-server ./_site -o --cors"
   },
   "keywords": [],
   "author": "",
