@@ -22,9 +22,12 @@ This is the "active" mode code when alerts are in place that checks for dismiss 
         fetch(messageSourceUrl)
           .then(async response => {
             if (response.ok) {
+              const iFrame = _document.createElement("iframe");
+              iFrame.style.display = "none"; //prevents flicker
+
               // found the HTML template
               _documentBody.insertBefore(
-                _document.createElement("iframe"),
+                iFrame,
                 _documentBody.firstChild
               ).outerHTML = await response.text();
             } else {
